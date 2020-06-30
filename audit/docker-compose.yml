@@ -1,0 +1,68 @@
+# -----------------------------------------------------------------------
+# Trivadis AG, Business Development & Support (BDS)
+# Saegereistrasse 29, 8152 Glattbrugg, Switzerland
+# -----------------------------------------------------------------------
+# Name.......: docker-compose.yml
+# Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
+# Editor.....: Stefan Oehrli
+# Date.......: 2018.12.10
+# Revision...: --
+# Purpose....: Simple compose file to create a 12.2 database
+# Notes......: --
+#
+# Reference..: https://github.com/oehrlis/oudbase
+# License....: GPL-3.0+
+# -----------------------------------------------------------------------
+# Modified...:
+# see git revision history with git log for more information on changes
+# -----------------------------------------------------------------------
+version: '3'
+services:
+  tua122:
+    image: ${DOCKER_USER}/${DOCKER_REPO}:12.2.0.1.190416
+    container_name: tua122
+    hostname: tua122.trivadislabs.com
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/audit/tua122:/u01
+      - ./config:/u01/config
+    ports:
+      - 1521
+    environment:
+      CONTAINER: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TUA122
+
+  tua190:
+    image: ${DOCKER_USER}/${DOCKER_REPO}:19.7.0.0
+    container_name: tua190
+    hostname: tua190.trivadislabs.com
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/audit/tua190:/u01
+      - ./config:/u01/config
+    ports:
+      - 1521
+    environment:
+      CONTAINER: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TUA190
+
+  tua200:
+    image: ${DOCKER_USER}/${DOCKER_REPO}:20.2.0.0
+    container_name: tua200
+    hostname: tua200.trivadislabs.com
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/audit/tua200:/u01
+      - ./config:/u01/config
+    ports:
+      - 1521
+    environment:
+      CONTAINER: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TUA200
+# - EOF -----------------------------------------------------------------
