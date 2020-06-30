@@ -53,7 +53,7 @@ services:
       - SYS_ADMIN
     volumes:
       - ${DOCKER_VOLUME_BASE}/doe/eus/cdb:/u01
-      - ./db:/u01/config
+      - ./cdb:/u01/config
       - ./common:/u01/common
     ports:
       - "${DOE_EUS_CDB_SQLNET}:1521"
