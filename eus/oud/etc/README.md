@@ -1,0 +1,3 @@
+# Config Files
+
+This folder contains various configuration files that are not applied automatically.

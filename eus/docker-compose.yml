@@ -1,0 +1,107 @@
+# -----------------------------------------------------------------------
+# Trivadis AG, Business Development & Support (BDS)
+# Saegereistrasse 29, 8152 Glattbrugg, Switzerland
+# -----------------------------------------------------------------------
+# Name.......: docker-compose.yml
+# Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
+# Editor.....: Stefan Oehrli
+# Date.......: 2018.12.11
+# Revision...: --
+# Purpose....: Docker compose file to create a 18.4 database and a OUD 
+#              directory server to configure enterprise user security
+# Notes......: --
+# Reference..: https://github.com/oehrlis/oudbase
+# License....: GPL-3.0+
+# -----------------------------------------------------------------------
+# Modified...:
+# see git revision history with git log for more information on changes
+# -----------------------------------------------------------------------
+
+version: '3'
+services:
+# Database service
+  eusdb:
+    image: oracle/database:${DOE_EUS_SDB_VERSION}
+    container_name: eusdb
+    hostname: eusdb.${DOE_LAB_DOMAIN}
+    restart: unless-stopped
+    depends_on:
+      - eusoud
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/sdb:/u01
+      - ./sdb:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "${DOE_EUS_SDB_SQLNET}:1521"
+    environment:
+      DISPLAY: ${DOE_EUS_DISPLAY}:0
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TEUS01
+
+  euscdb:
+    image: oracle/database:${DOE_EUS_CDB_VERSION}
+    container_name: euscdb
+    hostname: euscdb.${DOE_LAB_DOMAIN}
+    restart: unless-stopped
+    depends_on:
+      - eusoud
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/cdb:/u01
+      - ./db:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "${DOE_EUS_CDB_SQLNET}:1521"
+    environment:
+      DISPLAY: ${DOE_EUS_DISPLAY}:0
+      CONTAINER: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TEUS02
+
+# OUD LDAP service
+  eusoud:
+    image: oracle/oud:${DOE_EUS_OUD_VERSION}
+    container_name: eusoud
+    hostname: eusoud.${DOE_LAB_DOMAIN}
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/oud:/u01
+      - ./oud:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "${DOE_EUS_OUD_LDAP}:1389"
+      - "${DOE_EUS_OUD_LDAPS}:1636"
+      - "${DOE_EUS_OUD_ADMIN}:4444"
+    environment:
+      OUD_CUSTOM: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      BASEDN: dc=trivadislabs,dc=com
+      OUD_INSTANCE: oud_eus
+
+# OUDSM service
+  eusoudsm:
+    image: oracle/oudsm:${DOE_EUS_OUDSM_VERSION}
+    container_name: eusoudsm
+    hostname: eusoudsm.${DOE_LAB_DOMAIN}
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/oudsm:/u01
+      - ./oudsm:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "${DOE_EUS_OUDSM_HTTP}:7001"
+      - "${DOE_EUS_OUDSM_HTTPS}:7002"
+    environment:
+      INSTANCE_INIT: /u01/config
+
+# use an external ${DOE_LAB_DOMAIN} network
+networks:
+  default:
+    external:
+      name: ${DOE_LAB_DOMAIN}
+# - EOF -----------------------------------------------------------------
