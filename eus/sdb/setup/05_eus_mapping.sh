@@ -21,8 +21,8 @@ export BASEDN=${BASEDN:-"dc=trivadislabs,dc=com"}
 export OUD_HOST=${OUD_HOST:-"eusoud.trivadislabs.com"}
 export OUD_PORT=${OUD_PORT:-"1389"}
 export ORACLE_SID=${ORACLE_SID:-"TEUS01"}
-export EUS_ADMIN=${EUS_ADMIN:-"cn=eusadmin,cn=oraclecontext"}
-export EUS_PWD_FILE=${EUS_PWD_FILE:-"/u01/oud/oud_eus_eusadmin_pwd.txt"}
+export EUS_ADMIN=${EUS_ADMIN:-"$(cat /u01/common/etc/oud_eus_eusadmin_dn.txt)"}
+export EUS_PWD_FILE=${EUS_PWD_FILE:-"/u01/common/etc/oud_eus_eusadmin_pwd.txt"}
 export SYSTEM_PWD_FILE=${SYSTEM_PWD_FILE:-"${ORACLE_BASE}/admin/${ORACLE_SID}/etc/${ORACLE_SID}_password.txt"}
 
 # - configure EUS mappings ---------------------------------------------

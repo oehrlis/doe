@@ -18,6 +18,30 @@
 --  see git revision history for more information on changes/updates
 ----------------------------------------------------------------------------
 
+-- remove existing lockdown profiles
+DECLARE
+    vcount        INTEGER := 0;
+    TYPE table_varchar IS
+        TABLE OF VARCHAR2(128);
+    users   table_varchar := table_varchar('KING','EUS_USERS');
+    roles   table_varchar := table_varchar('COMMON_CLERK','HR_CLERK','COMMON_MGR','HR_MGR');
+BEGIN  
+    FOR i IN 1..users.count LOOP
+        SELECT COUNT(1) INTO vcount FROM dba_users WHERE username = users(i);
+        IF vcount != 0 THEN
+            EXECUTE IMMEDIATE ('DROP USER '||users(i));
+        END IF; 
+    END LOOP;
+
+    FOR i IN 1..roles.count LOOP
+        SELECT COUNT(1) INTO vcount FROM dba_roles WHERE role = roles(i);
+        IF vcount != 0 THEN
+            EXECUTE IMMEDIATE ('DROP ROLE '||roles(i));
+        END IF; 
+    END LOOP;
+END;
+/
+
 -- global private schema for king
 CREATE USER king IDENTIFIED GLOBALLY;
 GRANT connect TO king;

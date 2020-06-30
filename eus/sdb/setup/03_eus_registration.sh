@@ -21,10 +21,10 @@ export BASEDN=${BASEDN:-"dc=trivadislabs,dc=com"}
 #export OUD_HOST=${OUD_HOST:-"oud.trivadislabs.com"}
 export OUD_HOST=${OUD_HOST:-"eusoud.trivadislabs.com"}
 export ORACLE_SID=${ORACLE_SID:-"TEUS01"}
-export EUS_ADMIN=${EUS_ADMIN:-"cn=eusadmin,cn=oraclecontext"}
+export EUS_ADMIN=${EUS_ADMIN:-"$(cat /u01/common/etc/oud_eus_eusadmin_dn.txt)"}
+export EUS_PWD_FILE=${EUS_PWD_FILE:-"/u01/common/etc/oud_eus_eusadmin_pwd.txt"}
 export SYS_PWD_FILE=${SYS_PWD_FILE:-"${ORACLE_BASE}/admin/${ORACLE_SID}/etc/${ORACLE_SID}_password.txt"}
 export WALLET_PWD_FILE=${WALLET_PWD_FILE:-"${ORACLE_BASE}/admin/${ORACLE_SID}/etc/${ORACLE_SID}_password.txt"}
-export EUS_PWD_FILE=${EUS_PWD_FILE:-"/u01/oud/oud_eus_eusadmin_pwd.txt"}
 
 # - configure SQLNet ----------------------------------------------------
 echo "Configure SQLNet ldap.ora:"
@@ -42,7 +42,7 @@ echo "  EUS_ADMIN           :   ${EUS_ADMIN}"
 echo "  SYS_PWD_FILE        :   ${SYS_PWD_FILE}"
 echo "  WALLET_PWD_FILE     :   ${WALLET_PWD_FILE}"
 echo "  EUS_PWD_FILE        :   ${EUS_PWD_FILE}"
-echo $ORACLE_HOME/bin/dbca -silent -configureDatabase \
+$ORACLE_HOME/bin/dbca -silent -configureDatabase \
 -sourceDB ${ORACLE_SID} -sysDBAUserName sys -sysDBAPassword $(cat ${SYS_PWD_FILE}) \
 -registerWithDirService true -dirServiceUserName ${EUS_ADMIN} \
 -dirServicePassword $(cat ${EUS_PWD_FILE}) -walletPassword $(cat ${WALLET_PWD_FILE}) 

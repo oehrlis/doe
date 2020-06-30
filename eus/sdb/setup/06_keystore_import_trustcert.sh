@@ -21,7 +21,7 @@
 export KEYSTOREFILE=${KEYSTOREFILE:-"$ORACLE_BASE/network/admin/keystore.jks"} 
 export KEYSTOREPIN=${KEYSTOREPIN:-"$ORACLE_BASE/network/admin/keystore.pin"}
 export KEYSTORE_ALIAS=${KEYSTORE_ALIAS:-"oud_root_certificate"}
-export TRUSTED_CERT_FILE=${TRUSTED_CERT_FILE:-"/u01/oud/oud_trusted_cert.txt"}
+export TRUSTED_CERT_FILE=${TRUSTED_CERT_FILE:-"/u01/common/etc/oud_trusted_cert.txt"}
 
 if [ -f "$KEYSTOREPIN" ]; then
     echo "  found keystore pin file $KEYSTOREPIN"
