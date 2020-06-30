@@ -52,8 +52,8 @@ ObjectClass: organizationalUnit
 Description: local user and groups maintained by OUD
 ou: local
 aci: (target = "ldap:///ou=local,BASEDN")(targetattr != "authpassword || aci || userpassword")(targetscope = "subtree") (version 3.0; acl "Self entry read AD Users"; allow (search,read) userdn = "ldap:///self";)
-aci: (target = "ldap:///ou=local,BASEDN")(targetattr = "* || +")(targetscope = "subtree") (version 3.0; acl "Local/Internal write access"; allow (compare,read,add,write,delete,search) groupdn = "ldap:///ou=group_int_rw,ou=groups,ou=local,BASEDN";)
-aci: (target = "ldap:///ou=local,BASEDN")(targetattr = "* || +")(targetscope = "subtree") (version 3.0; acl "Local/Internal read access"; allow (search,read) groupdn = "ldap:///ou=group_int_ro,ou=groups,ou=local,BASEDN";)
+aci: (target = "ldap:///ou=local,BASEDN")(targetattr = "* || +")(targetscope = "subtree") (version 3.0; acl "Local/local write access"; allow (compare,read,add,write,delete,search) groupdn = "ldap:///ou=group_int_rw,ou=groups,ou=local,BASEDN";)
+aci: (target = "ldap:///ou=local,BASEDN")(targetattr = "* || +")(targetscope = "subtree") (version 3.0; acl "Local/local read access"; allow (search,read) groupdn = "ldap:///ou=group_int_ro,ou=groups,ou=local,BASEDN";)
 
 # local container for users
 dn: ou=users,ou=local,BASEDN
@@ -110,7 +110,7 @@ dn: ou=group_int_rw,ou=groups,ou=local,BASEDN
 objectClass: groupOfUniquenames
 objectClass: top
 cn: group_int_rw
-description: Group group_int_rw has all read/write privilges on ou=internal,BASEDN
+description: Group group_int_rw has all read/write privilges on ou=local,BASEDN
 ou: group_int_rw
 uniquemember: cn=Directory Manager
 uniquemember: ou=role_oud_admins,ou=groups,ou=local,BASEDN
@@ -120,7 +120,7 @@ dn: ou=group_int_ro,ou=groups,ou=local,BASEDN
 objectClass: groupOfUniquenames
 objectClass: top
 cn: group_int_ro
-description: Group group_int_ro has all read privilges on ou=internal,BASEDN
+description: Group group_int_ro has all read privilges on ou=local,BASEDN
 ou: group_int_ro
 uniquemember: cn=Directory Manager
 uniquemember: ou=role_oud_admins,ou=groups,ou=local,BASEDN
