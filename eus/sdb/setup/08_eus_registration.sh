@@ -3,7 +3,7 @@
 # Trivadis AG, Business Development & Support (BDS)
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # -----------------------------------------------------------------------
-# Name.......: 03_eus_registration.sh
+# Name.......: 08_eus_registration.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
 # Date.......: 2018.06.27
