@@ -12,7 +12,8 @@
 # Notes......: Das Script für die dsconfig Kommandos aus 04_create_root_user.conf
 #              als Batch aus sowie die LDIF aus 04_create_root_user.ldif. 
 # Reference..: 
-# License....: GPL-3.0+
+# License....: Licensed under the Universal Permissive License v 1.0 as 
+#              shown at https://oss.oracle.com/licenses/upl.
 # -----------------------------------------------------------------------
 # Modified...:
 # see git revision history with git log for more information on changes

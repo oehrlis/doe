@@ -6,7 +6,7 @@
 # Name.......: 19_reset_root_passwords.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.06.25
+# Date.......: 2020.06.30
 # Usage......: 19_reset_root_passwords.sh
 # Purpose....: Script to reset admin user passwords
 # Notes......: 

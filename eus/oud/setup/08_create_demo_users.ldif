@@ -6,7 +6,7 @@ version: 1
 # Name.......: TrivadisLAB.ldif 
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2018.11.14
+# Date.......: 2020.07.01
 # Revision...: 
 # Purpose....: Trivadis LAB LDIF file for regular LDAP
 # Notes......: 
