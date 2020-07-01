@@ -5,7 +5,7 @@
 --  Name......: 05_clone_pdb1_pdb2.sql
 --  Author....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 --  Editor....: Stefan Oehrli
---  Date......: 2019.03.18
+--  Date......: 2020.07.01
 --  Revision..:  
 --  Purpose...: Script to clone PDB1 to PDB2
 --  Notes.....:  

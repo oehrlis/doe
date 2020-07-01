@@ -3,17 +3,17 @@
 # Trivadis AG, Infrastructure Managed Services
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ---------------------------------------------------------------------------
-# Name.......: 03_prepare_pdb_env.sh
+# Name.......: 07_prepare_pdb_env.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2019.05.13
+# Date.......: 2020.06.01
 # Revision...: 
 # Purpose....: Script to add a tnsname entry and other stuff for the PDB pdbsec 
 #              pdbaud pdb1 pdb2 pdb3.
 # Notes......: ...
 # Reference..: --
 # License....: Licensed under the Universal Permissive License v 1.0 as 
-#              shown at http://oss.oracle.com/licenses/upl.
+#              shown at https://oss.oracle.com/licenses/upl.
 # ---------------------------------------------------------------------------
 # Modified...:
 # see git revision history for more information on changes/updates

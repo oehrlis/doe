@@ -2,10 +2,10 @@
 --  Trivadis AG, Infrastructure Managed Services
 --  Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 ----------------------------------------------------------------------------
---  Name......: 04_eus_config.sql
+--  Name......: 04_eus_config_pdb1.sql
 --  Author....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 --  Editor....: Stefan Oehrli
---  Date......: 2018.12.10
+--  Date......: 2020.07.01
 --  Revision..:  
 --  Purpose...: Script to create the EUS schemas for global shared and 
 --              private schemas

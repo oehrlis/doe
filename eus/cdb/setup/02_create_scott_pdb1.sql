@@ -2,10 +2,10 @@
 --  Trivadis AG, Infrastructure Managed Services
 --  Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 ----------------------------------------------------------------------------
---  Name......: 03_create_scott_pdb1.sql
+--  Name......: 02_create_scott_pdb1.sql
 --  Author....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 --  Editor....: Stefan Oehrli
---  Date......: 2019.03.18
+--  Date......: 2020.07.01
 --  Revision..:  
 --  Purpose...: Script to create the SCOTT schema
 --  Notes.....:  
