@@ -53,8 +53,8 @@ END;
 
 -- general global shared schema
 CREATE USER c##eus_users IDENTIFIED GLOBALLY;
-GRANT connect TO EUS_USERS;
-GRANT SELECT ON v_$session TO eus_users;
+GRANT connect TO c##eus_users;
+GRANT SELECT ON v_$session TO c##eus_users;
 
 -- enterprise role for common clerks
 -- CREATE ROLE common_clerk IDENTIFIED GLOBALLY;
