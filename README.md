@@ -4,7 +4,7 @@ This repository contains *Docker-based Oracle Engineering* environments and samp
 
 Currently the following environment and use cases are covered:
 
-- [eus](eus) Oracle Enterprise User Security Environment with Oracle Database 19c and Oracle Unified Directory 12c. This Setup does include 4 Docker containers for Oracle Database 19c single tenant, Oracle Database 19c multi tenant, Oracle Unified Directory as well an Oracle Unified Directory Service Manager.
+- [**eus - Oracle Enterprise User Security**](eus)  Environment with Oracle Database 19c and Oracle Unified Directory 12c. This Setup does include 4 Docker containers for Oracle Database 19c single tenant, Oracle Database 19c multi tenant, Oracle Unified Directory as well an Oracle Unified Directory Service Manager.
 
 The following environments and use cases are planned or still in progress:
 
