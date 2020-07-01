@@ -18,9 +18,10 @@
 ----------------------------------------------------------------------------
 -- set the current
 --ALTER PLUGGABLE DATABASE pdb1 CLOSE;
-
+COLUMN pdb_path NEW_VALUE pdb_path NOPRINT
+SELECT substr(file_name, 1, instr(file_name, '/', -1, 1)-1) pdb_path FROM dba_data_files WHERE file_id=1;
 CREATE PLUGGABLE DATABASE pdb2 FROM pdb1
-  FILE_NAME_CONVERT=('/u01/oradata/TMOBI01/PDB1/','/u01/oradata/TMOBI01/PDB2/');
+  FILE_NAME_CONVERT=('&pdb_path/PDB1/','&pdb_path/TEUS02/PDB2/');
 
 --ALTER PLUGGABLE DATABASE pdb1 OPEN READ WRITE;
 ALTER PLUGGABLE DATABASE pdb2 OPEN READ WRITE;

@@ -37,6 +37,7 @@ SPOOL 02_create_tvd_hr.log
 
 -- set the current
 alter session set container=&pdb;
+
 ----------------------------------------------------------------------------
 -- cleanup section 
 DECLARE
@@ -81,9 +82,13 @@ GRANT CREATE SESSION, RESOURCE, EXECUTE_CATALOG_ROLE TO tvd_hr_sec;
 GRANT execute ON sys.dbms_stats TO tvd_hr;
 
 ----------------------------------------------------------------------------
+-- create tvd_hr roles
+CREATE ROLE tvd_hr_ro;
+CREATE ROLE tvd_hr_rw;
+
+----------------------------------------------------------------------------
 -- create tvd_hr schema objects
 ALTER SESSION SET CURRENT_SCHEMA=TVD_HR;
-
 ALTER SESSION SET NLS_LANGUAGE=American;
 ALTER SESSION SET NLS_TERRITORY=America;
 
@@ -771,6 +776,23 @@ column of the departments table';
 COMMIT;
 
 ----------------------------------------------------------------------------
+-- grant ro/rw on TVD_HR to TVD_HR role 
+GRANT READ ON tvd_hr.employees TO tvd_hr_ro;
+GRANT READ ON tvd_hr.jobs TO tvd_hr_ro;
+GRANT READ ON tvd_hr.job_history TO tvd_hr_ro;
+GRANT READ ON tvd_hr.locations TO tvd_hr_ro;
+GRANT READ ON tvd_hr.departments TO tvd_hr_ro;
+
+GRANT READ ON tvd_hr.regions TO tvd_hr_ro;
+GRANT READ ON tvd_hr.countries TO tvd_hr_ro;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON tvd_hr.employees TO tvd_hr_rw;
+GRANT SELECT,INSERT,UPDATE,DELETE ON tvd_hr.jobs TO tvd_hr_rw;
+GRANT SELECT,INSERT,UPDATE,DELETE ON tvd_hr.job_history TO tvd_hr_rw;
+GRANT SELECT,INSERT,UPDATE,DELETE ON tvd_hr.locations TO tvd_hr_rw;
+GRANT SELECT,INSERT,UPDATE,DELETE ON tvd_hr.departments TO tvd_hr_rw;
+
+----------------------------------------------------------------------------
 -- gather schema statistics
 EXECUTE dbms_stats.gather_schema_stats( -
         'TVD_HR'                        ,       -
@@ -778,12 +800,9 @@ EXECUTE dbms_stats.gather_schema_stats( -
         cascade => TRUE                 ,       -
         block_sample => TRUE            );
 
-spool off
-exit
-
 ----------------------------------------------------------------------------
 -- create VPD stuff
-CONNECT tvd_hr_sec/tvd_hr_sec
+CONNECT tvd_hr_sec/tvd_hr_sec@euscdb:1521/pdb1
 CREATE OR REPLACE FUNCTION EMPLOYEE_RESTRICT (
    SCHEMA   IN   VARCHAR2,
    tab      IN   VARCHAR2
@@ -792,7 +811,7 @@ CREATE OR REPLACE FUNCTION EMPLOYEE_RESTRICT (
  IS
   return_val VARCHAR2 (2000);
 BEGIN
-    return_val :=  '(department_id = sys_context(''SYS_LDAP_USER_DEFAULT'', ''DEPARTMENTNUMBER'') ) AND ( upper(last_name) = upper(sys_context(''SYS_LDAP_USER_DEFAULT'', ''UID'')) OR upper(sys_context(''SYS_LDAP_USER_DEFAULT'', ''TITLE'')) = ''MANAGER'')';
+    return_val :=  '(department_id = sys_context(''SYS_LDAP_USER_DEFAULT'', ''DEPARTMENTNUMBER'') ) AND ( upper(last_name) = upper(sys_context(''SYS_LDAP_USER_DEFAULT'', ''UID'')) OR upper(sys_context(''SYS_LDAP_USER_DEFAULT'', ''TITLE'')) = ''MANAGER'') or (sys_context(''SYS_LDAP_USER_DEFAULT'', ''DEPARTMENTNUMBER'') = 70) or (sys_context(''SYS_LDAP_USER_DEFAULT'', ''DEPARTMENTNUMBER'') = 10)';
     RETURN return_val;
 END employee_restrict;
 /
@@ -809,4 +828,6 @@ BEGIN
 END;
 /
 
+spool off
+exit
 -- EOF ---------------------------------------------------------------------
