@@ -23,7 +23,7 @@
 
 # Get the root users
 echo "- get user from directory -----------------------------------------------"
-mapfile -t COMMON_USERS < <(${OUD_INSTANCE_HOME}/OUD/bin/ldapsearch --hostname ${HOST} --port $PORT -D "${DIRMAN}"  ou=${USER_OU},${BASEDN}" "(objectClass=person)" dn|sed 's/^dn: //'|grep -i 'cn')
+mapfile -t COMMON_USERS < <(${OUD_INSTANCE_HOME}/OUD/bin/ldapsearch --hostname ${HOST} --port $PORT -D "${DIRMAN}"  -j ${PWD_FILE} -b "${BASEDN}" "(objectClass=person)" dn|sed 's/^dn: //'|grep -i 'cn')
 DEFAULT_USERS_PWD_FILE=${DEFAULT_USERS_PWD_FILE:-"${OUD_INSTANCE_ADMIN}/etc/${OUD_INSTANCE}_default_user_pwd.txt"}
 
 # - configure instance ------------------------------------------------------
