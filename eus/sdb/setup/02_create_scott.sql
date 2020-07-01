@@ -5,7 +5,7 @@
 --  Name......: 02_create_scott.sql
 --  Author....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 --  Editor....: Stefan Oehrli
---  Date......: 2018.12.10
+--  Date......: 2020.07.01
 --  Revision..:  
 --  Purpose...: Script to create the SCOTT schema
 --  Notes.....:  

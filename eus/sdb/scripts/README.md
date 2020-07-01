@@ -1,1 +1,0 @@
-This folder contains various SQL scripts.

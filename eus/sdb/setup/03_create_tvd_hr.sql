@@ -2,10 +2,10 @@
 --  Trivadis AG, Infrastructure Managed Services
 --  Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 ----------------------------------------------------------------------------
---  Name......: 02_create_tvd_hr.sql
+--  Name......: 03_create_tvd_hr.sql
 --  Author....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 --  Editor....: Stefan Oehrli
---  Date......: 2018.12.10
+--  Date......: 2020.07.01
 --  Revision..:  
 --  Purpose...: Main script to create the TVD_HR schema
 --  Notes.....:  
