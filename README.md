@@ -9,8 +9,8 @@ Currently the following environment and use cases are covered:
 The following environments and use cases are planned or still in progress:
 
 - [audit](audit) Oracle Databases with Oracle Unified Audit
-- [cmu](cmu) Oracle Database 19c with centrally managed users and MS Active Directory integration. The MS Active Directory is not part of this project and must be built separately according to [oehrlis/docker](https://github.com/oehrlis/trivadislabs.com).
-- [eusad](eusad) Oracle Enterprise User Security Environment with an Oracle Unified Directory AD Proxy. The MS Active Directory is not part of this project and must be built separately according to [oehrlis/docker](https://github.com/oehrlis/trivadislabs.com).
+- [cmu](cmu) Oracle Database 19c with centrally managed users and MS Active Directory integration. The MS Active Directory is not part of this project and must be built separately according to [oehrlis/docker](https://github.com/oehrlis/docker).
+- [eusad](eusad) Oracle Enterprise User Security Environment with an Oracle Unified Directory AD Proxy. The MS Active Directory is not part of this project and must be built separately according to [oehrlis/docker](https://github.com/oehrlis/docker).
 
 ## Pre-built Images with Commercial Software
 

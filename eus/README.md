@@ -1,78 +1,87 @@
 # Oracle Enterprise User Security
 
+This Docker based Oracle Engineering environment does setup Oracle Enterprise User Security with an Oracle single tenant database or a multitenant database together with Oracle Unified Directory. Optional it is also possible to create a container for an Oracle Unified Directory Services Manager (OUDSM). All together can be used to verify different use cases for enterprise user security, e.g. user and role concept, deployment, troubleshooting, SQLNet customization and much more.
 
-** Currently work in progress***
+## Requirements
 
+This environment does require the following Docker images.
 
-This example shows how to enable Unified Audit an Oracle database in a Docker Container. The persistent data (e.g. data files, config files etc.) is stored on an external volume. The startup script `01_check_unified_audit.sh` will check if Oracle Unified Audit is enabled if not it will stop the database, relink Oracle and start the database again. Some prerequisites and basic principles:
+- Oracle Database 19c (e.g `oracle/database:19.7.0.0`)
+- Oracle Unified Directory 12c (e.g `oracle/oud:12.2.1.4.200204`)
+- Oracle Unified Directory 12c Services Manager (e.g `oracle/oudsm:12.2.1.4.0`)
 
-- `01_check_unified_audit.sh` does check if Oracle Unified Audit is enabled. If not it will stop the database, relink Oracle and start the database again
-- Script can be put in the startup as well setup folder.
-- Setup folder does provide a couple of additional Scripts
+Whereby the current environment was explicitly checked with these versions. Other versions are also possible and make sense for testing and engineering work. Due to the license terms, Oracle does not allow to provide pe-build docker images. Therefore these Docker images have to be build manually based on the build scripts provided in the Github repository [oehrlis/docker](https://github.com/oehrlis/docker). A configuration based on the official Oracle Docker images is basically possible, but has not yet been verified. 
 
-| File                                                   | Purpose                                          |
-|--------------------------------------------------------|--------------------------------------------------|
-| [01_check_unified_audit.sh](01_check_unified_audit.sh) | Script to check and enable unified audit.        |
-| [02_create_scott_pdb1.sql](02_create_scott_pdb1.sql)   | Script to create the SCOTT schema.               |
-| [03_create_tvd_hr_pdb1.sql](03_create_tvd_hr_pdb1.sql) | Main script to create the TVD_HR schema in PDB1. |
-| [04_config_audit.sql](04_config_audit.sql)             | Script to config unified audit.                  |
-| [05_clone_pdb1_pdb2.sql](05_clone_pdb1_pdb2.sql)       | Script to clone PDB1 to PDB2.                    |
-
-## Run the Oracle Database Unified Audit Use Case
-
-Update the `docker-compose.yml` file and set the desired base image. Default is 19.4.0.0.
+Verify the base Docker images for Oracle Database 19c:
 
 ```bash
-vi docker-compose.yml
+docker images oracle/database:19.7.0.0
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+oracle/database     19.7.0.0            db2cd81e10e3        4 weeks ago         6.88GB
 ```
 
-Create a container **tua190**, **tua180** or **tua122** using `docker-compose`. This will also create the corresponding database *TUA190*, *TUA180* respectively *TUA122*. It is important to specify the service when calling `docker-compose` otherwise all three container and databases will be created.
+Verify the base Docker images for Oracle Unified Directory 12c (OUD and OUDSM):
 
 ```bash
-docker-compose up -d TUA190
+docker images oracle/oud*:12.2.1.4.*
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+oracle/oudsm        12.2.1.4.0          7d1e718eebf9        5 weeks ago         2.43GB
+oracle/oud          12.2.1.4.200204     511e11292d7c        5 weeks ago         787MB
+oracle/oud          12.2.1.4.0          cb368b2dae43        5 weeks ago         785MB
 ```
 
-Monitor the progress of database creation using `docker-compose`.
+## Architecture
+
+The Docker Compose file does setup the following Services:
+
+- **eusoud** A Docker container with Oracle Unified Directory used to store the Oracle Context for Enterprise User Security. 
+- **eusdb** A Docker container with a single tenant Oracle Database i.e *ORACLE_SID=TEUS01* including a SCOTT and TVD_HR example schemas.
+- **euscdb** A Docker container with a multitenant Oracle Database i.e *ORACLE_SID=TEUS02* with two PDBs including a SCOTT and TVD_HR example schemas.
+- **eusoudsm** A Docker container with a OUDSM console.
+
+It is possible to either setup all or just a part of the containers. As a minimum, the OUD container plus a database container must be started. The environment is configured, that the corresponding database instance or directory instance is created on initialization respectively first start. The respective setup scripts are stored in the different configuration directories e.g. [oud/setup](oud/setup) for the OUD instance, [sdb/setup](sdb/setup) for the database instance, etc.
+
+The persistant data of the database and directory container is stored locally in a directory specified by the environment variable `${DOCKER_VOLUME_BASE}`. The default value is set to the project folder. It can be customized by either setting `${DOCKER_VOLUME_BASE}` explicitly or by modifying the [.env](.env) file.
+
+## Setup of Services
+
+### Minimal Setup
 
 ```bash
-docker-compose logs -f
+docker-compose up -d eusoud eusdb
 ```
 
-The database is ready when you see the following message in your docker logs.
+### Individual Service Setup
 
 ```bash
----------------------------------------------------------------
- - DATABASE TUA190 IS READY TO USE!
----------------------------------------------------------------
+docker-compose up -d eusoudsm
 ```
 
-You now can shutdown and destroy the container using `docker-compose`. Database will remain since it is stored on a voluem / bind-mount folder.
+### Setup all Services
 
 ```bash
-docker-compose down
+docker-compose up -d
 ```
 
-Re-create the container **tua190** using `docker-compose`. The database *TUA190* will be reused. The run script `50_run_database.sh` will make sure make sure, that the scripts in the [startup](config/startup) folder are executed. This includes `01_check_unified_audit.sh`.
+## Use of Services
 
 ```bash
-docker-compose up -d TUA190
+soe@gaia:~/Development/github.com/oehrlis/doe/eus/ [ic19300] docker-compose ps
+  Name                Command                  State       Ports                                        
+-----------------------------------------------------------------------------------------------------------------
+euscdb     /bin/sh -c exec ${ORADBA_I ...   Up (healthy)   0.0.0.0:5522->1521/tcp, 5500/tcp
+eusdb      /bin/sh -c exec ${ORADBA_I ...   Up (healthy)   0.0.0.0:5521->1521/tcp, 5500/tcp
+eusoud     /bin/sh -c exec "${ORADBA_ ...   Up (healthy)   10443/tcp, 1080/tcp, 1081/tcp, 0.0.0.0:5389->1389/tcp, 
+                                                           0.0.0.0:5636->1636/tcp 0.0.0.0:5444->4444/tcp, 
+                                                           8080/tcp, 8444/tcp, 8989/tcp
+eusoudsm   /bin/sh -c exec "${ORADBA_ ...   Up (healthy)   0.0.0.0:5001->7001/tcp, 0.0.0.0:5002->7002/tcp  
 ```
-
-Monitor the progress of database startup / datapach using `docker-compose`.
-
-```bash
-docker-compose logs -f
-```
-
-Connect to the database via Shell or SQLPlus and check your Oracle Audit Configuration.
 
 ## Customization
 
-By default the volume will be created in the directory specified by the environment variable *DOCKER_VOLUME_BASE*. If the environment variable is not specified, it will use the default value from ``*.env`` which is the current path. Beside the usual changes e.g. container name, hostname, ports etc. you can configure how the DB itself will be created by specify several configuration parameter.
+### Basic Customization
 
-- **ORACLE_SID** Default Oracle SID. Usually it will default to the variable which has been specified during build. A custom SID can / should be specified. Default is either *TUA190*, *TUA180* or *TUA122*.
-- **ORACLE_PDB** Default PDB name, if *CONTAINER* is set to `TRUE` (default `PDB1`)
-- **CONTAINER** Flag to create a container or single tenant database. Default set to `FALSE`.
-- **ORACLE_PWD** Custom admin password for common admin user like SYS and SYSTEM. If not specified a random password will be generated.
-- **INSTANCE_INIT** Folder for customize setup and startup. The database create script will look for a folder `setup` during initial setup or `startup` during each container startup. All bash `.sh` scripts as well sql `.sql`  script will be executed. Make sure to add a sequence to keep the order of the scripts. In this use case we will set the *INSTANCE_INIT* to `/u01/config` which is mapped to the local [config](config) folder. `/u01/config`  
-- **ORADBA_TEMPLATE_PREFIX** Prefix to use a custom dbca template or the general purpose default template. By default this variable is not set. In this case dbca will use the general purpose template with the starter database. If set to `custom_` dbca will use a custom template to create a fresh database. This will take longer since the database will be create from scratch.
+### Customize Services
+
+## Destroy Environment
+
