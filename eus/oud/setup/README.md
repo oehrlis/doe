@@ -21,5 +21,6 @@ This folder contains all files executed after the OUD instance is initially crea
 - [19_reset_directory_manager_password.sh](19_reset_directory_manager_password.sh) Reset `cn=Directory Manager` password.
 - [19_reset_root_passwords.sh](19_reset_root_passwords.sh) Reset or regenerate all admin users passwords.
 - [19_reset_user_passwords.sh](19_reset_user_passwords.sh) Reset all passwords for the demo users to $DEFAULT_PASSWORD.
+- [setup_oud_instance](setup_oud_instance) Script to create the OUD instance. The script will go execute all `0?_*.sh` and `1?_*.sh` files create the instance. All files in sequence after `19_*.sh` have to be executed manually. This includes the replication.
 
 Using the scripts from the template, creating an OUD instance is relatively easy. The instance can be created either completely with the wrapper script `setup_oud_instance` or step by step by running the bash scripts from the template one by one. Alternatively, the OUD instance can be created manually with 'oud-setup'. In this case, however, any adjustments must be made directly with LDIF or dsconfig. The following subchapters describe the different variants.
