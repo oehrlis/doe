@@ -62,10 +62,11 @@ export KEYSTOREPIN=${OUD_INSTANCE_HOME}/OUD/config/keystore.pin
 
 # EUS Configuration
 export EUS_USER_NAME="eusadmin"
-export EUS_USER_DN="cn=${EUS_USER_NAME},ou=Users,ou=local,${BASEDN}"
+export EUS_USER_DN="cn=eusadmin,cn=Root DNs,cn=config"
 export COMMON_FILES="/u01/common"
 export EUSADMIN_USERS_PWD_FILE=${COMMON_FILES}/etc/${OUD_INSTANCE}_${EUS_USER_NAME}_pwd.txt
 export EUSADMIN_USERS_DN_FILE=${COMMON_FILES}/etc/${OUD_INSTANCE}_${EUS_USER_NAME}_dn.txt
+echo ${EUS_USER_DN} >${EUSADMIN_USERS_DN_FILE}
 export TRUSTED_CERT_FILE=${COMMON_FILES}/etc/oud_trusted_cert.txt
 
 # Password files

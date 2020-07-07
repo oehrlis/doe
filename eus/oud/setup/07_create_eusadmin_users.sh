@@ -29,10 +29,8 @@ echo "  BASEDN                  : ${BASEDN}"
 echo "  EUS_USER_NAME           : ${EUS_USER_NAME}"
 echo "  EUS_USER_DN             : ${EUS_USER_DN}"
 echo "  EUSADMIN_USERS_PWD_FILE : ${EUSADMIN_USERS_PWD_FILE}"
-echo "  EUSADMIN_USERS_DN_FILE  : ${EUSADMIN_USERS_DN_FILE}"
 
 # reuse existing password file
-echo ${EUS_USER_DN} >${EUSADMIN_USERS_DN_FILE}
 if [ -f "$EUSADMIN_USERS_PWD_FILE" ]; then
     echo "    found password file $EUSADMIN_USERS_PWD_FILE"
     export ADMIN_PASSWORD=$(cat $EUSADMIN_USERS_PWD_FILE)
