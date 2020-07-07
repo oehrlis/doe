@@ -1,1 +1,1 @@
-cn=eusadmin,ou=Users,ou=local,dc=trivadislabs,dc=com
+cn=eusadmin,cn=Root DNs,cn=config
