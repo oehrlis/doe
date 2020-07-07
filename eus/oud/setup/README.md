@@ -18,8 +18,9 @@ This folder contains all files executed after the OUD instance is initially crea
 - [08_create_demo_users.sh](08_create_demo_users.sh) Wrapper script to create a couple of users and groups.
 - [09_migrate_keystore.sh](09_migrate_keystore.sh) Script to migrate the java keystore to PKCS12
 - [10_export_trustcert_keystore.sh](10_export_trustcert_keystore.sh) Script to export the trust certificat from the java keystore.
-- [19_reset_directory_manager_password.sh](19_reset_directory_manager_password.sh) Reset `cn=Directory Manager` password.
-- [19_reset_root_passwords.sh](19_reset_root_passwords.sh) Reset or regenerate all admin users passwords.
+- [17_reset_directory_manager_password.sh](17_reset_directory_manager_password.sh) Reset `cn=Directory Manager` password.
+- [17_reset_root_passwords.sh](17_reset_root_passwords.sh) Reset or regenerate all admin users passwords.
+- [18_reset_eusadmin_password.sh](18_reset_eusadmin_password.sh) Reset or regenerate eusadmin user password.
 - [19_reset_user_passwords.sh](19_reset_user_passwords.sh) Reset all passwords for the demo users to $DEFAULT_PASSWORD.
 - [setup_oud_instance](setup_oud_instance) Script to create the OUD instance. The script will go execute all `0?_*.sh` and `1?_*.sh` files create the instance. All files in sequence after `19_*.sh` have to be executed manually. This includes the replication.
 
