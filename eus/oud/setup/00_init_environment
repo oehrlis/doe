@@ -47,7 +47,7 @@
 # - Instance information
 export DIRMAN="cn=Directory Manager"
 export REPMAN=admin
-export BASEDN="dc=trivadislabs,dc=com"
+export BASEDN=${BASEDN:-"dc=trivadislabs,dc=com"}
 export BASEDN_STRING=$(echo $BASEDN|sed 's/\(dc\|o\|ou\)=//g; s/,/_/g;')
 export DEFAULT_PASSWORD="LAB01schulung"     # default password for ldap users (none admin users)
 

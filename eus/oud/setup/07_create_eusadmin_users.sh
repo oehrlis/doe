@@ -21,8 +21,7 @@
 # - load instance environment -------------------------------------------
 . "$(dirname $0)/00_init_environment"
 export EUSADMIN_USERS_PWD_FILE=${EUSADMIN_USERS_PWD_FILE:-"${INSTANCE_INIT}/etc/${OUD_INSTANCE}_${EUS_USER_NAME}_pwd.txt"}
-export EUSADMIN_USERS_DN_FILE=${EUSADMIN_USERS_DN_FILE:-"${INSTANCE_INIT}/etc/${OUD_INSTANCE}_${EUS_USER_NAME}_dn.txt"}
-
+export EUS_USER_DN="cn=${EUS_USER_NAME},ou=Users,ou=local,${BASEDN}"
 # - configure instance --------------------------------------------------
 echo "Create EUS Admin user for OUD instance ${OUD_INSTANCE} using:"
 echo "  BASEDN                  : ${BASEDN}"
@@ -87,7 +86,7 @@ ${OUD_INSTANCE_HOME}/OUD/bin/ldappasswordmodify \
     -D "${DIRMAN}" -j $PWD_FILE \
     --port $PORT_ADMIN --trustAll --useSSL \
     --authzID "${EUS_USER_DN}" \
-    --currentPasswordFile $EUSADMIN_USERS_PWD_FILE --newPasswordFile $EUSADMIN_USERS_PWD_FILE 
+    --newPasswordFile $EUSADMIN_USERS_PWD_FILE 
 
 echo "- Config EUS users"
 ${OUD_INSTANCE_HOME}/OUD/bin/dsconfig set-access-control-handler-prop \
