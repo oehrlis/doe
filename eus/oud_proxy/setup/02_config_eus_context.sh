@@ -27,7 +27,7 @@
 # - load instance environment -------------------------------------------
 . "$(dirname $0)/00_init_environment"
 CONFIGFILE="$(dirname $0)/$(basename $0 .sh).conf"      # config file based on script name
-CONFIGFILE_CUSTOM="$(dirname $0)/$(basename $0 .sh)_${BASEDN_STRING}"
+CONFIGFILE_CUSTOM="$(dirname $0)/$(basename $0 .sh).conf_${BASEDN_STRING}"
 # - configure instance --------------------------------------------------
 echo "Configure OUD proxy instance ${OUD_INSTANCE} using:"
 echo "  BASEDN            : ${BASEDN}"
