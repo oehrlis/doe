@@ -20,8 +20,8 @@
 
 # - load instance environment -----------------------------------------------
 . "$(dirname $0)/00_init_environment"
-export EUSADMIN_USERS_PWD_FILE=${EUSADMIN_USERS_PWD_FILE:-"${INSTANCE_INIT}/etc/${OUD_INSTANCE}_${EUS_USER_NAME}_pwd.txt"}
-export EUSADMIN_USERS_DN_FILE=${EUSADMIN_USERS_DN_FILE:-"${INSTANCE_INIT}/etc/${OUD_INSTANCE}_${EUS_USER_NAME}_dn.txt"}
+export EUSADMIN_USERS_PWD_FILE=${EUSADMIN_USERS_PWD_FILE:-"${INSTANCE_INIT}/etc/${EUS_USER_NAME}_pwd.txt"}
+export EUSADMIN_USERS_DN_FILE=${EUSADMIN_USERS_DN_FILE:-"${INSTANCE_INIT}/etc/${EUS_USER_NAME}_dn.txt"}
 
 # - configure instance --------------------------------------------------
 echo "Reset eusadmin user password for OUD instance ${OUD_INSTANCE} using:"
@@ -37,9 +37,18 @@ if [ -f "$EUSADMIN_USERS_PWD_FILE" ]; then
     export ADMIN_PASSWORD=$(cat $EUSADMIN_USERS_PWD_FILE)
 fi
 
-# generate a password
-if [ -z ${ADMIN_PASSWORD} ]; then
-# Auto generate a password
+# reuse existing password file
+if [ -f "$EUSADMIN_USERS_PWD_FILE" ]; then
+    echo "- found eus admin password file ${EUSADMIN_USERS_PWD_FILE}"
+    export ADMIN_PASSWORD=$(cat ${EUSADMIN_USERS_PWD_FILE})
+# use default password from variable
+elif [ -n "${DEFAULT_PASSWORD}" ]; then
+    echo "- use default user password from \${DEFAULT_PASSWORD} for user ${EUS_USER_NAME}"
+    echo ${DEFAULT_PASSWORD}> ${EUSADMIN_USERS_PWD_FILE}
+    export ADMIN_PASSWORD=$(cat $EUSADMIN_USERS_PWD_FILE)
+# still here, then lets create a password
+else 
+    # Auto generate a password
     echo "- auto generate new password..."
     while true; do
         s=$(cat /dev/urandom | tr -dc "A-Za-z0-9" | fold -w 10 | head -n 1)
@@ -54,8 +63,6 @@ if [ -z ${ADMIN_PASSWORD} ]; then
     ADMIN_PASSWORD=$s
     echo "- save password for ${EUS_USER_NAME} in ${EUSADMIN_USERS_PWD_FILE}"
     echo ${ADMIN_PASSWORD}>$EUSADMIN_USERS_PWD_FILE
-else
-    echo "- use predefined password for user ${EUS_USER_NAME} from ${EUSADMIN_USERS_PWD_FILE}"
 fi
 
 echo -n "- reset Password for $(cat ${EUSADMIN_USERS_DN_FILE}) "

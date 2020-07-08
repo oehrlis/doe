@@ -24,45 +24,17 @@ DN: cn=OracleDBSecurityAdmins,cn=OracleContext
 changetype: modify
 add: uniquemember
 uniquemember: cn=Directory Manager
+uniquemember: cn=oudadmin,cn=Root DNs,cn=config
 uniquemember: ou=role_eus_admins,ou=groups,ou=local,BASEDN
 uniquemember: ou=role_oud_admins,ou=groups,ou=local,BASEDN
-uniquemember: cn=oudadmin,cn=Root DNs,cn=config
-uniquemember: cn=eusadmin,cn=Root DNs,cn=config
 
-dn: cn=OracleDomainAdmins,cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext
-changetype: modify
-add: uniquemember
-uniquemember: cn=Directory Manager
-uniquemember: ou=role_eus_admins,ou=groups,ou=local,BASEDN
-uniquemember: ou=role_oud_admins,ou=groups,ou=local,BASEDN
-uniquemember: cn=oudadmin,cn=Root DNs,cn=config
-uniquemember: cn=eusadmin,cn=Root DNs,cn=config
-
-# Update common EUS Configuration
-DN: cn=OracleDBSecurityAdmins,cn=OracleContext,BASEDN
-changetype: modify
-add: uniquemember
-uniquemember: ou=role_oud_admins,ou=groups,ou=local,BASEDN
-uniquemember: ou=role_eus_admins,ou=groups,ou=local,BASEDN
-uniquemember: cn=oudadmin,cn=Root DNs,cn=config
-uniquemember: cn=eusadmin,cn=Root DNs,cn=config
-uniquemember: cn=netadmin,cn=Root DNs,cn=config
-
-DN: cn=OracleNetAdmins,cn=OracleContext,BASEDN
-changetype: modify
-add: uniquemember
-uniquemember:ou=role_oud_admins,ou=groups,ou=local,BASEDN
-uniquemember: ou=role_eus_admins,ou=groups,ou=local,BASEDN
-uniquemember: cn=oudadmin,cn=Root DNs,cn=config
-uniquemember: cn=eusadmin,cn=Root DNs,cn=config
-uniquemember: cn=netadmin,cn=Root DNs,cn=config
-
+# Update common EUS Configuration MOS Note 1996363.1
 dn: cn=OracleContextAdmins,cn=Groups,cn=OracleContext,BASEDN
 changetype: modify
 add: uniquemember
+uniquemember: cn=oudadmin,cn=Root DNs,cn=config
 uniquemember: ou=role_oud_admins,ou=groups,ou=local,BASEDN
 uniquemember: ou=role_eus_admins,ou=groups,ou=local,BASEDN
-uniquemember: cn=eusadmin,cn=Root DNs,cn=config
 
 dn: cn=Common,cn=Products,cn=OracleContext
 changetype: modify
