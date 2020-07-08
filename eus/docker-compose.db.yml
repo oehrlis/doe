@@ -1,0 +1,75 @@
+# -----------------------------------------------------------------------
+# Trivadis AG, Business Development & Support (BDS)
+# Saegereistrasse 29, 8152 Glattbrugg, Switzerland
+# -----------------------------------------------------------------------
+# Name.......: docker-compose.db.yml
+# Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
+# Editor.....: Stefan Oehrli
+# Date.......: 2020.07.07
+# Revision...: --
+# Purpose....: Docker compose file to create the DB containers used for
+#              enterprise user security
+# Notes......: --
+# Reference..: https://github.com/oehrlis/oudbase
+# License....: Licensed under the Universal Permissive License v 1.0 as 
+#              shown at https://oss.oracle.com/licenses/upl.
+# -----------------------------------------------------------------------
+# Modified...:
+# see git revision history with git log for more information on changes
+# -----------------------------------------------------------------------
+
+version: '3.5'
+services:
+# Database service as a single tenant database
+  eusdb:
+    image: oracle/database:${DOE_EUS_SDB_VERSION}
+    container_name: eusdb
+    hostname: eusdb.${DOE_LAB_DOMAIN}
+    networks:
+      - doe_lab_net
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/sdb:/u01
+      - ./sdb:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "${DOE_EUS_SDB_SQLNET}:1521"
+    environment:
+      DISPLAY: ${DOE_EUS_DISPLAY}:0
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TEUS01
+      BASEDN: ${DOE_LAB_BASEDN}
+      DOMAIN: ${DOE_LAB_DOMAIN}
+
+# Database service as a single tenant database
+  euscdb:
+    image: oracle/database:${DOE_EUS_CDB_VERSION}
+    container_name: euscdb
+    hostname: euscdb.${DOE_LAB_DOMAIN}
+    networks:
+      - doe_lab_net
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/cdb:/u01
+      - ./cdb:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "${DOE_EUS_CDB_SQLNET}:1521"
+    environment:
+      DISPLAY: ${DOE_EUS_DISPLAY}:0
+      CONTAINER: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TEUS02
+      BASEDN: ${DOE_LAB_BASEDN}
+      DOMAIN: ${DOE_LAB_DOMAIN}
+
+networks:
+  doe_lab_net:
+    name: ${DOE_LAB_DOMAIN}
+# - EOF -----------------------------------------------------------------

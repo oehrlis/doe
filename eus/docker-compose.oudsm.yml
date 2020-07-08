@@ -2,13 +2,12 @@
 # Trivadis AG, Business Development & Support (BDS)
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # -----------------------------------------------------------------------
-# Name.......: docker-compose.yml
+# Name.......: docker-compose.oudsm.yml
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
 # Date.......: 2020.07.07
 # Revision...: --
-# Purpose....: Docker compose file to create a OUD EUS instance used to
-#              configure enterprise user security
+# Purpose....: Docker compose file to create a OUD Services Manager
 # Notes......: --
 # Reference..: https://github.com/oehrlis/oudbase
 # License....: Licensed under the Universal Permissive License v 1.0 as 
@@ -20,28 +19,23 @@
 
 version: '3.5'
 services:
-
-# OUD LDAP service
-  eusoud:
-    image: oracle/oud:${DOE_EUS_OUD_VERSION}
-    container_name: eusoud
-    hostname: eusoud.${DOE_LAB_DOMAIN}
+# OUDSM service
+  eusoudsm:
+    image: oracle/oudsm:${DOE_EUS_OUDSM_VERSION}
+    container_name: eusoudsm
+    hostname: eusoudsm.${DOE_LAB_DOMAIN}
     networks:
       - doe_lab_net
     restart: unless-stopped
     volumes:
-      - ${DOCKER_VOLUME_BASE}/doe/eus/oud:/u01
-      - ./oud:/u01/config
+      - ${DOCKER_VOLUME_BASE}/doe/eus/oudsm:/u01
+      - ./oudsm:/u01/config
       - ./common:/u01/common
     ports:
-      - "${DOE_EUS_OUD_LDAP}:1389"
-      - "${DOE_EUS_OUD_LDAPS}:1636"
-      - "${DOE_EUS_OUD_ADMIN}:4444"
+      - "${DOE_EUS_OUDSM_HTTP}:7001"
+      - "${DOE_EUS_OUDSM_HTTPS}:7002"
     environment:
-      OUD_CUSTOM: 'TRUE'
       INSTANCE_INIT: /u01/config
-      BASEDN: ${DOE_LAB_BASEDN}
-      OUD_INSTANCE: oud_eus
 
 networks:
   doe_lab_net:

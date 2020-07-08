@@ -2,13 +2,13 @@
 # Trivadis AG, Business Development & Support (BDS)
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # -----------------------------------------------------------------------
-# Name.......: docker-compose.yml
+# Name.......: docker-compose.oud_proxy.yml
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
 # Date.......: 2020.07.07
 # Revision...: --
-# Purpose....: Docker compose file to create a OUD EUS instance used to
-#              configure enterprise user security
+# Purpose....: Docker compose file to create a OUD EUS proxy instance 
+#              used to configure enterprise user security
 # Notes......: --
 # Reference..: https://github.com/oehrlis/oudbase
 # License....: Licensed under the Universal Permissive License v 1.0 as 
@@ -30,8 +30,8 @@ services:
       - doe_lab_net
     restart: unless-stopped
     volumes:
-      - ${DOCKER_VOLUME_BASE}/doe/eus/oud:/u01
-      - ./oud:/u01/config
+      - ${DOCKER_VOLUME_BASE}/doe/eus/oud_proxy:/u01
+      - ./oud_proxy:/u01/config
       - ./common:/u01/common
     ports:
       - "${DOE_EUS_OUD_LDAP}:1389"
@@ -41,7 +41,7 @@ services:
       OUD_CUSTOM: 'TRUE'
       INSTANCE_INIT: /u01/config
       BASEDN: ${DOE_LAB_BASEDN}
-      OUD_INSTANCE: oud_eus
+      OUD_INSTANCE: oud_eus_proxy
 
 networks:
   doe_lab_net:
