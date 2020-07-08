@@ -22,7 +22,7 @@
 # - load instance environment -------------------------------------------
 . "$(dirname $0)/00_init_environment"
 LDIFFILE="$(dirname $0)/$(basename $0 .sh).ldif"      # LDIF file based on script name
-LDIFFILE_CUSTOM="$(dirname $0)/$(basename $0 .sh)_${BASEDN_STRING}"
+LDIFFILE_CUSTOM="$(dirname $0)/$(basename $0 .sh).ldif_${BASEDN_STRING}"
 # - configure instance --------------------------------------------------
 echo "Configure OUD instance ${OUD_INSTANCE} using:"
 echo "  BASEDN            : ${BASEDN}"
