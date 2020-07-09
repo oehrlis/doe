@@ -36,6 +36,7 @@ services:
       - "${DOE_EUS_OUDSM_HTTPS}:7002"
     environment:
       INSTANCE_INIT: /u01/config
+      ADMIN_PASSWORD: ${DOE_ADMIN_PASSWORD}
 
 networks:
   doe_lab_net:

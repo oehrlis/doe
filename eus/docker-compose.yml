@@ -42,6 +42,7 @@ services:
       INSTANCE_INIT: /u01/config
       BASEDN: ${DOE_LAB_BASEDN}
       OUD_INSTANCE: oud_eus
+      ADMIN_PASSWORD: ${DOE_ADMIN_PASSWORD}
 
 networks:
   doe_lab_net:

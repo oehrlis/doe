@@ -6,3 +6,7 @@ eus/oud/setup/05_config_eus_realm_trivadislabs_com
 eus/oud/setup/08_create_demo_users_trivadislabs_com
 eus/common/etc/oud_trusted_cert.txt
 eus/common/etc/oud_eus_eusadmin_pwd.txt
+eus/common/etc/eusadmin_dn.txt
+eus/common/etc/eusadmin_pwd.txt
+eus/oud/scripts/export_netservices.ldif
+eus/oud/scripts/import_netservices.ldif

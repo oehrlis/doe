@@ -26,6 +26,8 @@ services:
     image: oracle/oud:${DOE_EUS_OUD_VERSION}
     container_name: eusoud
     hostname: eusoud.${DOE_LAB_DOMAIN}
+    extra_hosts:
+      - "${DOE_EUS_OUD_AD}:10.0.0.4"
     networks:
       - doe_lab_net
     restart: unless-stopped
@@ -42,6 +44,7 @@ services:
       INSTANCE_INIT: /u01/config
       BASEDN: ${DOE_LAB_BASEDN}
       OUD_INSTANCE: oud_eus_proxy
+      ADMIN_PASSWORD: ${DOE_ADMIN_PASSWORD}
 
 networks:
   doe_lab_net:
