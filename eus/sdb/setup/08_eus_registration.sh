@@ -24,12 +24,12 @@ export OUD_HOST=${OUD_HOST:-"eusoud.${DOMAIN}"}
 export OUD_PORT=${OUD_PORT:-1389}
 export OUD_PORT_SSL=${OUD_PORT_SSL:-1636}
 export ORACLE_SID=${ORACLE_SID:-"TEUS01"}
+export ORACLE_PDB=""
 export TNS_ADMIN=${TNS_ADMIN:-"${ORACLE_BASE}/network/admin"}
 export EUS_ADMIN=${EUS_ADMIN:-"$(cat /u01/common/etc/eusadmin_dn.txt)"}
 export EUS_PWD_FILE=${EUS_PWD_FILE:-"/u01/common/etc/eusadmin_pwd.txt"}
 export SYS_PWD_FILE=${SYS_PWD_FILE:-"${ORACLE_BASE}/admin/${ORACLE_SID}/etc/${ORACLE_SID}_password.txt"}
 export WALLET_PWD_FILE=${WALLET_PWD_FILE:-"${ORACLE_BASE}/admin/${ORACLE_SID}/etc/${ORACLE_SID}_wallet_pwd.txt"}
-
 # - configure SQLNet ----------------------------------------------------
 echo "Configure SQLNet ldap.ora:"
 echo "  BASEDN              :   ${BASEDN}"
@@ -72,6 +72,20 @@ else
     echo "- save wallet password in ${WALLET_PWD_FILE}"
     echo ${ADMIN_PASSWORD}>$WALLET_PWD_FILE
 fi
+
+if [ -z "${ORACLE_PDB}" ]; then
+    EUS_DBNAME=${ORACLE_SID}
+    SERVICE_NAME=${ORACLE_SID}
+else
+    EUS_DBNAME=${ORACLE_PDB}_${ORACLE_SID}
+    SERVICE_NAME=${ORACLE_PDB}
+fi
+
+echo "Configure PDB:"
+echo "  BASEDN              :   ${BASEDN}"
+echo "  ORACLE_SID          :   ${ORACLE_SID}"
+echo "  ORACLE_PDB          :   ${ORACLE_PDB}"
+echo "  EUS_DBNAME          :   ${EUS_DBNAME}"
 
 # check if database is registered
 echo "- check if ${ORACLE_SID} does exist in OracleContext ${BASEDN}"

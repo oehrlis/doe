@@ -6,7 +6,7 @@
 # Name.......: 08_eus_registration_pdb2.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.06.01
+# Date.......: 2020.07.01
 # Revision...: --
 # Purpose....: Script to configure the EUS for Database.
 # Notes......: --
@@ -102,6 +102,17 @@ else
         -pdbName ${ORACLE_PDB} -sourceDB ${ORACLE_SID} -sysDBAUserName sys -sysDBAPassword $(cat ${SYS_PWD_FILE}) \
         -registerWithDirService true -dirServiceUserName "${EUS_ADMIN}" \
         -dirServicePassword $(cat ${EUS_PWD_FILE}) -walletPassword $(cat ${WALLET_PWD_FILE}) 
+fi
+
+UNIQUEMEMBER=$(ldapsearch -h ${OUD_HOST} -p ${OUD_PORT} -D ${EUS_ADMIN} -w $(cat ${EUS_PWD_FILE}) -b ${BASEDN} -s sub "(&(cn=OracleDefaultDomain)(uniquemember=cn=${EUS_DBNAME},cn=OracleContext,dc=trivadislabs,dc=com))" uniquemember 2>/dev/null)
+if [ -z "${UNIQUEMEMBER}" ]; then
+    echo "- add database ${EUS_DBNAME} to the OracleDefaultDomain"
+    ldapmodify -h ${OUD_HOST} -p ${OUD_PORT} -D ${EUS_ADMIN} -w $(cat ${EUS_PWD_FILE}) <<LDIF
+dn: cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext,${BASEDN}
+changetype: modify
+add: uniqueMember
+uniqueMember: cn=${EUS_DBNAME},cn=OracleContext,${BASEDN}
+LDIF
 fi
 
 # - unlock system -------------------------------------------------------
