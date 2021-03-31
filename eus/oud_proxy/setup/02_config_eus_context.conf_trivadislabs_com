@@ -33,8 +33,8 @@ create-extension \
   --type ldap-server \
   --extension-name ad_proxy \
   --set enabled:true \
-  --set remote-ldap-server-address:AD_PDC_HOST \
-  --set remote-ldap-server-port:AD_PDC_PORT \
+  --set remote-ldap-server-address:ad.trivadislabs.com \
+  --set remote-ldap-server-port:389 \
   --set remote-ldap-server-ssl-policy:always \
   --set ssl-trust-all:true
 
@@ -42,8 +42,8 @@ create-extension \
 create-workflow-element \
   --set enabled:true \
   --set client-cred-mode:use-specific-identity \ 
-  --set remote-ldap-server-bind-dn:"AD_PDC_USER" \
-  --set remote-ldap-server-bind-password:'AD_PDC_PASSWORD' \
+  --set remote-ldap-server-bind-dn:"cn=oracle,cn=Users,dc=trivadislabs,dc=com" \
+  --set remote-ldap-server-bind-password:'LAB01schulung' \
   --set ldap-server-extension:ad_proxy \
   --type proxy-ldap \
   --element-name ad_proxy_we
@@ -64,7 +64,7 @@ create-transformation \
 create-workflow-element \
   --type eus \
   --element-name eus-we \
-  --set eus-realm:BASEDN \
+  --set eus-realm:dc=trivadislabs,dc=com \
   --set server-type:ad \
   --set enabled:true \
   --set next-workflow-element:ad_proxy_we
@@ -80,7 +80,7 @@ create-workflow-element \
 
 # create generic workflow for transformation
 create-workflow \
-  --set base-dn:BASEDN \
+  --set base-dn:dc=trivadislabs,dc=com \
   --set enabled:true \
   --set workflow-element:eus-transfo-we \
   --type generic \

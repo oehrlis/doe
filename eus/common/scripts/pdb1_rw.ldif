@@ -1,0 +1,8 @@
+dn: cn=PDB1,cn=OracleContext,dc=trivadislabs,dc=com
+changetype: add
+objectclass: top
+objectclass: orclDBServer
+objectclass: orclDBServer_92
+cn: PDB1
+orclDBGlobalName: pdb1
+orclNetDescString: (DESCRIPTION=(FAILOVER=ON)(LOAD_BALANCE=OFF)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=euscdb)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=PDB1_RW)))

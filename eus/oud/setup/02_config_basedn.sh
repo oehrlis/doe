@@ -60,7 +60,6 @@ ${OUD_INSTANCE_HOME}/OUD/bin/ldapmodify \
   --defaultAdd \
   --filename "${LDIFFILE_CUSTOM}"
 
-
 # Update baseDN in LDIF file if required
 if [ -f ${CONFIGFILE} ]; then
   cp -v ${CONFIGFILE} ${CONFIGFILE_CUSTOM}

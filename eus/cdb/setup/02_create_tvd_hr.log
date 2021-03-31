@@ -1,0 +1,672 @@
+
+Session altered.
+
+
+PL/SQL procedure successfully completed.
+
+
+User created.
+
+
+User altered.
+
+
+User altered.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+User created.
+
+
+User altered.
+
+
+User altered.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+CREATE ROLE tvd_hr_ro
+            *
+ERROR at line 1:
+ORA-01921: role name 'TVD_HR_RO' conflicts with another user or role name
+
+
+CREATE ROLE tvd_hr_rw
+            *
+ERROR at line 1:
+ORA-01921: role name 'TVD_HR_RW' conflicts with another user or role name
+
+
+
+Session altered.
+
+
+Session altered.
+
+
+Session altered.
+
+******  Creating REGIONS table ....
+
+Table created.
+
+
+Index created.
+
+
+Table altered.
+
+******  Creating COUNTRIES table ....
+
+Table created.
+
+
+Table altered.
+
+******  Creating LOCATIONS table ....
+
+Table created.
+
+
+Index created.
+
+
+Table altered.
+
+
+Sequence created.
+
+******  Creating DEPARTMENTS table ....
+
+Table created.
+
+
+Index created.
+
+
+Table altered.
+
+
+Sequence created.
+
+******  Creating JOBS table ....
+
+Table created.
+
+
+Index created.
+
+
+Table altered.
+
+******  Creating EMPLOYEES table ....
+
+Table created.
+
+
+Index created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Sequence created.
+
+******  Creating JOB_HISTORY table ....
+
+Table created.
+
+
+Index created.
+
+
+Table altered.
+
+******  Creating EMP_DETAILS_VIEW view ...
+
+View created.
+
+
+Commit complete.
+
+
+Session altered.
+
+******  Populating REGIONS table ....
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+******  Populating COUNTIRES table ....
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+******  Populating LOCATIONS table ....
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+******  Populating DEPARTMENTS table ....
+
+Table altered.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+******  Populating JOBS table ....
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+******  Populating EMPLOYEES table ....
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Table altered.
+
+
+Commit complete.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Commit complete.
+
+
+Procedure created.
+
+
+Trigger created.
+
+
+Trigger altered.
+
+
+Procedure created.
+
+
+Trigger created.
+
+
+Commit complete.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Commit complete.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+PL/SQL procedure successfully completed.
+
+ERROR:
+ORA-12154: TNS:could not resolve the connect identifier specified
+
+
+Warning: You are no longer connected to ORACLE.
+SP2-0640: Not connected
+SP2-0640: Not connected
