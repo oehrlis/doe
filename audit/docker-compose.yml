@@ -35,7 +35,7 @@ services:
       ORACLE_SID: TUA122
 
   tua190:
-    image: ${DOCKER_USER}/${DOCKER_REPO}:19.7.0.0
+    image: ${DOCKER_USER}/${DOCKER_REPO}:19.8.0.0
     container_name: tua190
     hostname: tua190.trivadislabs.com
     restart: unless-stopped
@@ -49,6 +49,25 @@ services:
       CONTAINER: 'TRUE'
       INSTANCE_INIT: /u01/config
       ORACLE_SID: TUA190
+
+  tua196:
+    image: ${DOCKER_USER}/${DOCKER_REPO}:19.6.0.0
+    container_name: tua196
+    hostname: tua196.trivadislabs.com
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/audit/tua196:/u01
+      - ./config:/u01/config
+    ports:
+      - 1521
+    environment:
+      CONTAINER: 'TRUE'
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TUA196
+      CUSTOM_RSP: /u01/config/etc
+      ORADBA_DBC_FILE: dbca19.0.0_custom.dbc.tmpl
+      ORADBA_RSP_FILE: dbca19.0.0_custom.rsp.tmpl
 
   tua200:
     image: ${DOCKER_USER}/${DOCKER_REPO}:20.2.0.0

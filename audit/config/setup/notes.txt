@@ -1,0 +1,84 @@
+ALL USERS
+USER    YES YES
+
+
+col USER_NAME for a20
+col POLICY_NAME for a30
+col ENTITY_NAME for a20
+select * from audit_unified_enabled_policies order by 2,1;
+
+
+CREATE AUDIT POLICY sc_local_dba 
+    ROLE dba;
+COMMENT ON AUDIT POLICY sc_local_dba 
+    IS 'Swisscom specific local audit policy to audit dba role';
+AUDIT POLICY sc_local_dba;
+
+
+
+SQL> select * from audit_unified_enabled_policies order by 2,1;
+
+EnDZTvsV87F67Za
+host ./dbsat collect -n system/manager@vm108rz44:1521/pdb001170001.vmmgmnt.trivadis.com pdb001170001_no_sc_default
+host ./dbsat report -a -n -g pdb001170001_no_sc_default
+
+audit policy SC_LOCAL_ACCOUNT_MGMT;
+audit policy SC_LOCAL_LOGON_LOGOFF;
+audit policy SC_LOCAL_PDB_ISOLATION;
+audit policy SC_LOCAL_DBA;
+
+noaudit policy SC_LOCAL_ACCOUNT_MGMT;
+noaudit policy SC_LOCAL_DBA;
+noaudit policy SC_LOCAL_LOGON_LOGOFF;
+noaudit policy SC_LOCAL_PDB_ISOLATION;
+audit policy SC_LOCAL_DBA;
+
+noaudit policy SC_LOCAL_DBA;
+
+select * from audit_unified_enabled_policies order by 2,1;
+
+noaudit policy SC_COMMON_ACCOUNT_MGMT;
+audit policy SC_COMMON_ACCOUNT_MGMT;
+host ./dbsat collect -n system/manager@vm108rz44:1521/pdb001170001.vmmgmnt.trivadis.com pdb001170001_no_sc_default
+host ./dbsat report -a -n -g pdb001170001_no_sc_default
+
+audit policy SC_COMMON_DATABASE_PARAMETER;
+host ./dbsat collect -n system/manager@vm108rz44:1521/pdb001170001.vmmgmnt.trivadis.com pdb001170001_no_sc_default
+host ./dbsat report -a -n -g pdb001170001_no_sc_default
+
+audit policy SC_COMMON_DATAPUMP;
+host ./dbsat collect -n system/manager@vm108rz44:1521/pdb001170001.vmmgmnt.trivadis.com pdb001170001_no_sc_default
+host ./dbsat report -a -n -g pdb001170001_no_sc_default
+
+audit policy SC_COMMON_LOGON_LOGOFF;
+host ./dbsat collect -n system/manager@vm108rz44:1521/pdb001170001.vmmgmnt.trivadis.com pdb001170001_no_sc_default
+host ./dbsat report -a -n -g pdb001170001_no_sc_default
+
+audit policy SC_COMMON_SECURECONFIG;
+host ./dbsat collect -n system/manager@vm108rz44:1521/pdb001170001.vmmgmnt.trivadis.com pdb001170001_no_sc_default
+host ./dbsat report -a -n -g pdb001170001_no_sc_default
+
+
+CREATE AUDIT POLICY sc_local_dba 
+    ROLE dba;
+COMMENT ON AUDIT POLICY sc_local_dba 
+    IS 'Swisscom specific local audit policy to audit dba role';
+AUDIT POLICY sc_local_dba;
+
+
+select
+COMP_NAME reg_comp_name,
+    VERSION reg_version,
+    STATUS reg_status,
+    SCHEMA reg_schema,
+    MODIFIED reg_modified
+    from
+    dba_registry;
+
+
+@?/rdbms/admin/catnojav.sql
+@?/rdbms/admin/catjava.sql
+@?/rdbms/admin/utlrp.sql    
+
+
+/u01/app/oracle/product/19.6.0/dbhome_1/perl/bin/perl /u01/app/oracle/product/19.6.0/dbhome_1/rdbms/admin/catcon.pl -n 1 -c 'PDB001170001' -l /tmp -b ora_dynamic_pdb_jvm_enable_PDB001170001_initjvm /u01/app/oracle/product/19.6.0/dbhome_1/javavm/install/initjvm.sql
