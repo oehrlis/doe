@@ -10,3 +10,5 @@ eus/common/etc/eusadmin_dn.txt
 eus/common/etc/eusadmin_pwd.txt
 eus/oud/scripts/export_netservices.ldif
 eus/oud/scripts/import_netservices.ldif
+audit/config/dbsat/*
+**/*.DS_Store

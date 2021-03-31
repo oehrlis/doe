@@ -1,0 +1,63 @@
+# -----------------------------------------------------------------------
+# Trivadis AG, Business Development & Support (BDS)
+# Saegereistrasse 29, 8152 Glattbrugg, Switzerland
+# -----------------------------------------------------------------------
+# Name.......: docker-compose.yml
+# Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
+# Editor.....: Stefan Oehrli
+# Date.......: 2018.12.11
+# Revision...: --
+# Purpose....: Docker compose file to create a 18.5 database for CMU
+# Notes......: --
+# Reference..: https://github.com/oehrlis/oudbase
+# License....: GPL-3.0+
+# -----------------------------------------------------------------------
+# Modified...:
+# see git revision history with git log for more information on changes
+# -----------------------------------------------------------------------
+
+version: '3'
+services:
+# Database service
+  cmudb:
+    image: ${DOCKER_USER}/${DOCKER_REPO}:19.9.0.0
+    container_name: cmudb
+    hostname: cmudb
+    networks:
+      default:
+        aliases: 
+          - cmudb.trivadislabs.com
+    dns: 10.0.0.4
+    dns_search: trivadislabs.com
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/cmu/cmudb:/u01
+      - ./db:/u01/config
+    ports:
+      - "6521:1521"
+    environment:
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TCMU01
+
+# Database service
+#  cmucdb:
+#    image: ${DOCKER_USER}/${DOCKER_REPO}:19.9.0.0
+#    container_name: cmucdb
+#    hostname: cmucdb
+#    networks:
+#      default:
+#        aliases: 
+#          - cmucdb.trivadislabs.com
+#    dns: 10.0.0.4
+#    dns_search: trivadislabs.com
+#    restart: unless-stopped
+#    volumes:
+#      - ${DOCKER_VOLUME_BASE}/doe/cmu/cmucdb:/u01
+#      - ./db:/u01/config
+#    ports:
+#      - "7521:1521"
+#    environment:
+#      INSTANCE_INIT: /u01/config
+#      ORACLE_SID: TCMU02
+#      CONTAINER: 'TRUE'
+# - EOF -----------------------------------------------------------------
