@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oneoff_inventory>
+    <opack_version version="14.1.0.1.2"/>
+    <patch_id number="25921225"/>
+    <minimum_opatch_version>12.1.0.1.7</minimum_opatch_version>
+    <unique_patch_id>23797793</unique_patch_id>
+    <cannot_autorollback>false</cannot_autorollback>
+    <date_of_patch day="5" month="Sep" time="00:40:03 hrs" year="2020" zone="PST8PDT"/>
+    <base_bugs>
+        <bug description="NEED SUPPORT DIRECTORY USERS LOGON TO DATABASE WITH 12C VERIFIER" number="25921225"/>
+    </base_bugs>
+    <required_components>
+        <component internal_name="oracle.rdbms.rsf" opt_req="O" version="12.1.0.2.0"/>
+        <component internal_name="oracle.rdbms" opt_req="O" version="12.1.0.2.0"/>
+    </required_components>
+    <os_platforms>
+        <platform id="226" name="Linux x86-64"/>
+    </os_platforms>
+    <executables>
+        <executable path="%ORACLE_HOME%/bin/oracle"/>
+        <executable path="%ORACLE_HOME%/lib/libclntsh.so.12.1"/>
+    </executables>
+    <instance_shutdown>true</instance_shutdown>
+    <instance_shutdown_message/>
+    <online_rac_installable>true</online_rac_installable>
+    <run_as_root>false</run_as_root>
+    <sql_migrate>false</sql_migrate>
+    <wls_prereq_oneoffs/>
+    <prereq_oneoffs>
+        <prereq oneoff_id="31113348"/>
+    </prereq_oneoffs>
+    <overlay_oneoffs>
+        <overlay oneoff_id="31113348"/>
+    </overlay_oneoffs>
+    <patch_type value="singleton"/>
+    <patch_language value="en"/>
+    <product_family value="db"/>
+    <patching_model value="one-off"/>
+    <auto>false</auto>
+    <translatable>false</translatable>
+</oneoff_inventory>

@@ -1,0 +1,55 @@
+# -----------------------------------------------------------------------
+# Trivadis AG, Business Development & Support (BDS)
+# Saegereistrasse 29, 8152 Glattbrugg, Switzerland
+# -----------------------------------------------------------------------
+# Name.......: docker-compose.db.yml
+# Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
+# Editor.....: Stefan Oehrli
+# Date.......: 2020.07.07
+# Revision...: --
+# Purpose....: Docker compose file to create the DB containers used for
+#              enterprise user security
+# Notes......: --
+# Reference..: https://github.com/oehrlis/oudbase
+# License....: Licensed under the Universal Permissive License v 1.0 as 
+#              shown at https://oss.oracle.com/licenses/upl.
+# -----------------------------------------------------------------------
+# Modified...:
+# see git revision history with git log for more information on changes
+# -----------------------------------------------------------------------
+
+version: '3.5'
+services:
+
+# Database service as a single tenant database
+  eus12c1:
+    image: oracle/database:12.1.0.2.200714
+    container_name: eus12c1
+    hostname: eus12c1.${DOE_LAB_DOMAIN}
+    networks:
+      - doe_lab_net
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    volumes:
+      - ${DOCKER_VOLUME_BASE}/doe/eus/12c1:/u01
+      - ./sdb:/u01/config
+      - ./common:/u01/common
+    ports:
+      - "5525:1521"
+    environment:
+      DISPLAY: ${DOE_EUS_DISPLAY}:0
+      INSTANCE_INIT: /u01/config
+      ORACLE_SID: TEUS121
+      CONTAINER: 'FALSE'
+      BASEDN: ${DOE_LAB_BASEDN}
+      DOMAIN: ${DOE_LAB_DOMAIN}
+      CUSTOM_RSP: /u01/common/etc
+      ORADBA_DBC_FILE: dbca12.1.0.dbc.tmpl
+      ORADBA_RSP_FILE: dbca12.1.0.rsp.tmpl
+
+networks:
+  doe_lab_net:
+    name: ${DOE_LAB_DOMAIN}
+# - EOF -----------------------------------------------------------------

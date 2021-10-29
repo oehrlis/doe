@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oneoff_actions>
+    <oracle.ldap.rsf opt_req="O" version="12.1.0.2.0">
+        <archive backup_in_zip="false" name="libnnz12.a" object_name="lib/libnnz12.a/ztv.o" path="%ORACLE_HOME%/lib" shaolue="E30079117EF8770550DECD01A441A1DE3658E674"/>
+        <archive backup_in_zip="false" name="libnnz12.a" object_name="lib/libnnz12.a/ztvgh.o" path="%ORACLE_HOME%/lib" shaolue="B714FD644E9EB664090FD7EA5BF06B4355F473E9"/>
+        <archive backup_in_zip="false" name="libnnzst12.a" object_name="lib/libnnzst12.a/ext_ztv.o" path="%ORACLE_HOME%/lib" shaolue="E30079117EF8770550DECD01A441A1DE3658E674"/>
+        <archive backup_in_zip="false" name="libnnzst12.a" object_name="lib/libnnzst12.a/ext_ztvgh.o" path="%ORACLE_HOME%/lib" shaolue="B714FD644E9EB664090FD7EA5BF06B4355F473E9"/>
+    </oracle.ldap.rsf>
+    <oracle.ldap.rsf.ic opt_req="O" version="12.1.0.2.0">
+        <copy backup_in_zip="false" file_name="lib/libnnz12.so" name="libnnz12.so" path="%ORACLE_HOME%/lib" retain_permission="true" shaolue="000633819141CF1C7BFF7FCCDF67778D4D14A7D7"/>
+    </oracle.ldap.rsf.ic>
+    <oracle.rdbms.rsf opt_req="O" version="12.1.0.2.0">
+        <make change_dir="%ORACLE_HOME%/network/lib" make_file="ins_net_client.mk" make_target="client_sharedlib"/>
+    </oracle.rdbms.rsf>
+    <oracle.rdbms opt_req="O" version="12.1.0.2.0">
+        <make change_dir="%ORACLE_HOME%/rdbms/lib" make_file="ins_rdbms.mk" make_target="ikfed"/>
+        <make change_dir="%ORACLE_HOME%/rdbms/lib" make_file="ins_rdbms.mk" make_target="ioracle"/>
+    </oracle.rdbms>
+</oneoff_actions>

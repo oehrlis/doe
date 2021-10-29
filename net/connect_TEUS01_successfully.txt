@@ -1,0 +1,65 @@
+[08/Mar/2021:12:06:31 +0000] CONNECT conn=336 from=172.18.0.4:33458 to=172.18.0.3:1389 protocol=LDAP
+[08/Mar/2021:12:06:31 +0000] BIND REQ conn=336 op=0 msgID=1 type=SIMPLE dn="" version=3
+[08/Mar/2021:12:06:31 +0000] BIND RES conn=336 op=0 msgID=1 result=0 authDN="" etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=336 op=1 msgID=2 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=base filter="(objectclass=*)" attrs="objectclass,orclNetDescString,orclNetDescName,orclVersion"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=336 op=1 msgID=2 result=0 nentries=1 etime=2
+[08/Mar/2021:12:06:31 +0000] UNBIND REQ conn=336 op=2 msgID=3
+[08/Mar/2021:12:06:31 +0000] DISCONNECT conn=336 reason="Client Disconnect"
+[08/Mar/2021:12:06:31 +0000] CONNECT conn=337 from=172.18.0.4:33460 to=172.18.0.3:1389 protocol=LDAP
+[08/Mar/2021:12:06:31 +0000] BIND REQ conn=337 op=0 msgID=1 type=SIMPLE dn="" version=3
+[08/Mar/2021:12:06:31 +0000] BIND RES conn=337 op=0 msgID=1 result=0 authDN="" etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=337 op=1 msgID=2 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=base filter="(objectclass=*)" attrs="objectclass,orclNetDescString,orclNetDescName,orclVersion"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=337 op=1 msgID=2 result=0 nentries=1 etime=3
+[08/Mar/2021:12:06:31 +0000] UNBIND REQ conn=337 op=2 msgID=3
+[08/Mar/2021:12:06:31 +0000] DISCONNECT conn=337 reason="Client Disconnect"
+[08/Mar/2021:12:06:31 +0000] CONNECT conn=338 from=172.18.0.4:33462 to=172.18.0.3:1389 protocol=LDAP
+[08/Mar/2021:12:06:31 +0000] BIND REQ conn=338 op=0 msgID=1 type=SIMPLE dn="" version=3
+[08/Mar/2021:12:06:31 +0000] BIND RES conn=338 op=0 msgID=1 result=0 authDN="" etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=338 op=1 msgID=2 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=base filter="(objectclass=*)" attrs="objectclass,orclNetDescString,orclNetDescName,orclVersion"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=338 op=1 msgID=2 result=0 nentries=1 etime=4
+[08/Mar/2021:12:06:31 +0000] UNBIND REQ conn=338 op=2 msgID=3
+[08/Mar/2021:12:06:31 +0000] DISCONNECT conn=338 reason="Client Disconnect"
+[08/Mar/2021:12:06:31 +0000] CONNECT conn=339 from=172.18.0.4:44040 to=172.18.0.3:1636 protocol=LDAPS
+[08/Mar/2021:12:06:31 +0000] BIND REQ conn=339 op=0 msgID=1 type=SASL mechanism=DIGEST-MD5 dn="" version=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=-1 op=223 msgID=224 base="cn=config" scope=subordinates filter="(&(objectclass=ds-cfg-eus-workflow-element)(ds-cfg-enabled=true))" attrs="ALL"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=-1 op=223 msgID=224 result=0 nentries=1 etime=4
+[08/Mar/2021:12:06:31 +0000] BIND RES conn=339 op=0 msgID=1 result=14 etime=5
+[08/Mar/2021:12:06:31 +0000] BIND REQ conn=339 op=1 msgID=2 type=SASL mechanism=DIGEST-MD5 dn="" version=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=-1 op=224 msgID=225 base="cn=config" scope=subordinates filter="(&(objectclass=ds-cfg-eus-workflow-element)(ds-cfg-enabled=true))" attrs="ALL"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=-1 op=224 msgID=225 result=0 nentries=1 etime=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=-1 op=225 msgID=226 base="cn=teus01,cn=oraclecontext,dc=trivadislabs,dc=com" scope=base filter="(objectClass=*)" attrs="ds-privilege-name,+,*"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=-1 op=225 msgID=226 result=0 nentries=1 etime=1
+[08/Mar/2021:12:06:31 +0000] BIND RES conn=339 op=1 msgID=2 result=0 authDN="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" etime=6
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=2 msgID=3 base="cn=OracleDBSecurity,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=one filter="(&(objectclass=orcldbenterprisedomain_82)(uniqueMember=cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com))" attrs="orclDBAuthTypes,dn"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=2 msgID=3 result=0 nentries=1 etime=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=3 msgID=4 base="cn=Common,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=base filter="(objectclass=*)" attrs="ALL"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=3 msgID=4 result=0 nentries=1 etime=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=4 msgID=5 base="ou=People,dc=trivadislabs,dc=com" scope=sub filter="(uid=KING)" attrs="dn,authPassword,orclPassword,orclguid"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=4 msgID=5 result=0 nentries=1 etime=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=5 msgID=6 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbEntrylevelMapping)(orclDBDistinguishedName=cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=5 msgID=6 result=0 nentries=0 etime=1
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=6 msgID=7 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbSubtreelevelMapping)(orclDBDistinguishedName=ou=Senior Management,ou=People,dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=6 msgID=7 result=0 nentries=0 etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=7 msgID=8 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbSubtreelevelMapping)(orclDBDistinguishedName=ou=People,dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=7 msgID=8 result=0 nentries=0 etime=1
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=8 msgID=9 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbSubtreelevelMapping)(orclDBDistinguishedName=dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=8 msgID=9 result=0 nentries=0 etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=9 msgID=10 base="cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbSubtreelevelMapping)(orclDBDistinguishedName=dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=9 msgID=10 result=0 nentries=0 etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=10 msgID=11 base="cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbEntrylevelMapping)(orclDBDistinguishedName=cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=10 msgID=11 result=0 nentries=0 etime=1
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=11 msgID=12 base="cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbSubtreelevelMapping)(orclDBDistinguishedName=ou=Senior Management,ou=People,dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=11 msgID=12 result=0 nentries=0 etime=1
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=12 msgID=13 base="cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbSubtreelevelMapping)(orclDBDistinguishedName=ou=People,dc=trivadislabs,dc=com))" attrs="orclDBNativeUser"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=12 msgID=13 result=0 nentries=1 etime=3
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=13 msgID=14 base="cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbapplicationcontextvalue)(uniquemember=cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com))" attrs="cn"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=13 msgID=14 result=0 nentries=0 etime=0
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=14 msgID=15 base="cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com" scope=base filter="(objectclass=inetOrgPerson)" attrs="ALL"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=14 msgID=15 result=0 nentries=1 etime=6
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=15 msgID=16 base="cn=Common,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=base filter="(objectclass=*)" attrs="orclCommonGroupSearchBase"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=15 msgID=16 result=0 nentries=1 etime=2
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=16 msgID=17 base="ou=Groups,dc=trivadislabs,dc=com" scope=sub filter="(|(&(uniquemember=cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com)(objectclass=groupofuniquenames)(!(objectclass=orcldbenterpriserole)))(&(member=cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com)(objectclass=groupofnames)(!(objectclass=orcldbenterpriserole))))" attrs="dn"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=16 msgID=17 result=0 nentries=2 etime=9
+[08/Mar/2021:12:06:31 +0000] SEARCH REQ conn=339 op=17 msgID=18 base="cn=OracleDefaultDomain,cn=OracleDBSecurity,cn=Products,cn=OracleContext,dc=trivadislabs,dc=com" scope=sub filter="(&(objectclass=orcldbenterpriserole)(|(uniquemember=cn=Ben King,ou=Senior Management,ou=People,dc=trivadislabs,dc=com)(uniquemember=cn=Trivadis LAB Users,ou=Groups,dc=trivadislabs,dc=com)(uniquemember=cn=Trivadis LAB Management,ou=Groups,dc=trivadislabs,dc=com))(orcldbserverrole=cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com*))" attrs="orcldbserverrole"
+[08/Mar/2021:12:06:31 +0000] SEARCH RES conn=339 op=17 msgID=18 result=0 nentries=1 etime=7
+[08/Mar/2021:12:06:31 +0000] DISCONNECT conn=339 reason="Client Disconnect"

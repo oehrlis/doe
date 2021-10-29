@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oneoff_inventory>
+    <opack_version version="14.1.0.1.9"/>
+    <patch_id number="23627427"/>
+    <unique_patch_id>23677459</unique_patch_id>
+    <minimum_opatch_version>12.1.0.1.4</minimum_opatch_version>
+    <temp_unique_patch_id>-1595269397</temp_unique_patch_id>
+    <cannot_autorollback>false</cannot_autorollback>
+    <date_of_patch day="20" month="Jul" time="11:23:17 hrs" year="2020" zone="PST8PDT"/>
+    <base_bugs>
+        <bug description="NEED SUPPORT FOR DB 12C PASSWORD VERSION IN ZTV/ZTVGH" number="23627427"/>
+    </base_bugs>
+    <required_components>
+        <component internal_name="oracle.ldap.rsf" opt_req="O" version="12.1.0.2.0"/>
+        <component internal_name="oracle.ldap.rsf.ic" opt_req="O" version="12.1.0.2.0"/>
+        <component internal_name="oracle.rdbms.rsf" opt_req="O" version="12.1.0.2.0"/>
+        <component internal_name="oracle.rdbms" opt_req="O" version="12.1.0.2.0"/>
+    </required_components>
+    <os_platforms>
+        <platform id="226" name="Linux x86-64"/>
+    </os_platforms>
+    <executables>
+        <executable path="%ORACLE_HOME%/bin/oracle"/>
+        <executable path="%ORACLE_HOME%/bin/kfed"/>
+    </executables>
+    <instance_shutdown>true</instance_shutdown>
+    <instance_shutdown_message/>
+    <online_rac_installable>true</online_rac_installable>
+    <run_as_root>false</run_as_root>
+    <sql_migrate>false</sql_migrate>
+    <wls_prereq_oneoffs/>
+    <prereq_oneoffs>
+        <prereq oneoff_id="31113348"/>
+    </prereq_oneoffs>
+    <overlay_oneoffs>
+        <overlay oneoff_id="31113348"/>
+    </overlay_oneoffs>
+    <patch_type sub_type="update" value="singleton"/>
+    <patch_language value="en"/>
+    <product_family value="db"/>
+    <patching_model value="one-off"/>
+    <auto>false</auto>
+    <translatable>false</translatable>
+    <application_dirs/>
+    <patch_characteristics>
+        <content_type value="generic"/>
+    </patch_characteristics>
+</oneoff_inventory>

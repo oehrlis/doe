@@ -1,0 +1,97 @@
+
+                                                                                
+                                                                                
+
+
+                                                                                
+                                                                                
+
+service_rw is TEUS01_RW.trivadislabs.com
+service_ro is TEUS01_RO.trivadislabs.com
+
+SQL> 
+SQL> exec DBMS_SERVICE.CREATE_SERVICE ( -
+>   service_name => '&service_rw', -
+>   network_name => '&service_rw', -
+>   failover_method => 'BASIC', -
+>   failover_type => 'SELECT', -
+>   failover_retries => 3600, -
+>   failover_delay => 1);
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> exec DBMS_SERVICE.CREATE_SERVICE ( -
+>   service_name => '&service_ro', -
+>   network_name => '&service_ro', -
+>   failover_method => 'BASIC', -
+>   failover_type => 'SELECT', -
+>   failover_retries => 3600, -
+>   failover_delay => 1);
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2    db_name	     VARCHAR(9);
+  3    db_domain     VARCHAR(128);
+  4    database_role VARCHAR(30);
+  5  BEGIN
+  6    SELECT value
+  7  	 INTO db_name
+  8  	 FROM v$parameter
+  9  	   WHERE name = 'db_name';
+ 10  
+ 11    SELECT value
+ 12  	 INTO db_domain
+ 13  	 FROM v$parameter
+ 14  	   WHERE name = 'db_domain';
+ 15  
+ 16    SELECT database_role
+ 17  	 INTO database_role
+ 18  	 FROM v$database;
+ 19  
+ 20    IF database_role = 'PRIMARY' THEN
+ 21  	 dbms_service.start_service(rtrim(db_name||'_RW.'||db_domain,'.'));
+ 22    ELSE
+ 23  	 dbms_service.start_service(rtrim(db_name||'_RO.'||db_domain,'.'));
+ 24    END IF;
+ 25  END;
+ 26  /
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER service_trigger
+  2    after startup on database
+  3  DECLARE
+  4    db_name	     VARCHAR(9);
+  5    db_domain     VARCHAR(128);
+  6    database_role VARCHAR(30);
+  7  BEGIN
+  8    SELECT value
+  9  	 INTO db_name
+ 10  	 FROM v$parameter
+ 11  	   WHERE name = 'db_name';
+ 12  
+ 13    SELECT value
+ 14  	 INTO db_domain
+ 15  	 FROM v$parameter
+ 16  	   WHERE name = 'db_domain';
+ 17  
+ 18    SELECT database_role
+ 19  	 INTO database_role
+ 20  	 FROM v$database;
+ 21  
+ 22    IF database_role = 'PRIMARY' THEN
+ 23  	 dbms_service.start_service(rtrim(db_name||'_RW.'||db_domain,'.'));
+ 24    ELSE
+ 25  	 dbms_service.start_service(rtrim(db_name||'_RO.'||db_domain,'.'));
+ 26    END IF;
+ 27  END;
+ 28  /
+
+Trigger created.
+
+SQL> 
+SQL> SPOOL OFF

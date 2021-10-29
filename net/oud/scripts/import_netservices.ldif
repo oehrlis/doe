@@ -1,0 +1,64 @@
+dn: cn=TEUS01,cn=OracleContext,dc=trivadislabs,dc=com
+objectClass: top
+objectClass: orclApplicationEntity
+objectClass: orclDBServer
+objectClass: orclDBServer_92
+objectClass: orclService
+orclNetDescString: (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=eusdb.trivadislabs.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=TEUS01.trivadislabs.com)))
+cn: TEUS01
+orclDBGlobalName: TEUS01
+creatorsName: cn=eusadmin,cn=OracleContext
+modifyTimestamp: 20200709062936Z
+modifiersName: cn=Directory Manager
+entryUUID: 1b86fcc8-2a8a-4897-9f66-4a42fb8750b4
+createTimestamp: 20200708142802Z
+pwdChangedTime: 20200709062826.885Z
+
+dn: cn=TEUS02,cn=OracleContext,dc=trivadislabs,dc=com
+objectClass: top
+objectClass: orclApplicationEntity
+objectClass: orclDBServer
+objectClass: orclDBServer_92
+objectClass: orclService
+orclNetDescString: (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=euscdb.trivadislabs.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=TEUS02)))
+cn: TEUS02
+orclDBGlobalName: TEUS02
+creatorsName: cn=eusadmin,cn=OracleContext
+modifyTimestamp: 20200709062742Z
+modifiersName: cn=Directory Manager
+entryUUID: 0881aabb-5f67-47a4-b7e1-0e927d363f35
+createTimestamp: 20200708142900Z
+pwdChangedTime: 20200709062718.118Z
+
+dn: cn=pdb1_TEUS02,cn=OracleContext,dc=trivadislabs,dc=com
+objectClass: top
+objectClass: orclApplicationEntity
+objectClass: orclDBServer
+objectClass: orclDBServer_92
+objectClass: orclService
+orclNetDescString: (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=euscdb.trivadislabs.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pdb1)))
+cn: pdb1_TEUS02
+orclDBGlobalName: pdb1_TEUS02
+creatorsName: cn=eusadmin,cn=OracleContext
+modifyTimestamp: 20200709062949Z
+modifiersName: cn=Directory Manager
+entryUUID: 8bf4612e-725f-4a7a-aacc-8d4bc73c0817
+createTimestamp: 20200708142922Z
+pwdChangedTime: 20200709062850.133Z
+
+dn: cn=pdb2_TEUS02,cn=OracleContext,dc=trivadislabs,dc=com
+objectClass: top
+objectClass: orclApplicationEntity
+objectClass: orclDBServer
+objectClass: orclDBServer_92
+objectClass: orclService
+orclNetDescString: (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=euscdb.trivadislabs.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pdb2)))
+cn: pdb2_TEUS02
+orclDBGlobalName: pdb2_TEUS02
+creatorsName: cn=eusadmin,cn=OracleContext
+modifyTimestamp: 20200709062942Z
+modifiersName: cn=Directory Manager
+entryUUID: 75b2dcaf-7edf-46c5-b7eb-725d8ae0b547
+createTimestamp: 20200708142944Z
+pwdChangedTime: 20200709062837.120Z
+

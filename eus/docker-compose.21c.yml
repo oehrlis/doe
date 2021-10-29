@@ -23,7 +23,7 @@ services:
 
 # Database service as a single tenant database
   eus21c:
-    image: oracle/database:21.1.0.0
+    image: oracle/database:21.3.0.0
     container_name: eus21c
     hostname: eus21c.${DOE_LAB_DOMAIN}
     networks:
@@ -37,7 +37,7 @@ services:
       - ./cdb:/u01/config
       - ./common:/u01/common
     ports:
-      - "${DOE_EUS_CDB_SQLNET}:1521"
+      - "${DOE_EUS_CDB21_SQLNET}:1521"
     environment:
       DISPLAY: ${DOE_EUS_DISPLAY}:0
       CONTAINER: 'TRUE'

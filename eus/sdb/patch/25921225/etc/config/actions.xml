@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oneoff_actions>
+    <oracle.rdbms.rsf opt_req="O" version="12.1.0.2.0">
+        <archive name="libcommon12.a" object_name="lib/libcommon12.a/kzsrcr.o" path="%ORACLE_HOME%/lib"/>
+        <archive name="libcommon12.a" object_name="lib/libcommon12.a/kztv.o" path="%ORACLE_HOME%/lib"/>
+        <make change_dir="%ORACLE_HOME%/network/lib" make_file="ins_net_client.mk" make_target="client_sharedlib"/>
+    </oracle.rdbms.rsf>
+    <oracle.rdbms opt_req="O" version="12.1.0.2.0">
+        <archive name="libserver12.a" object_name="lib/libserver12.a/kzal.o" path="%ORACLE_HOME%/lib"/>
+        <archive name="libserver12.a" object_name="lib/libserver12.a/kzia.o" path="%ORACLE_HOME%/lib"/>
+        <make change_dir="%ORACLE_HOME%/rdbms/lib" make_file="ins_rdbms.mk" make_target="client_sharedlib"/>
+        <make change_dir="%ORACLE_HOME%/rdbms/lib" make_file="ins_rdbms.mk" make_target="ioracle"/>
+    </oracle.rdbms>
+</oneoff_actions>

@@ -1,0 +1,92 @@
+<!-- This file contain patch Metadata -->
+<results md5_sum="24128a6884333d22ac620e91badb6cda">
+  <generated_date in_epoch_ms="1595340315000">2020-07-21 14:05:15</generated_date>
+  <patch has_prereqs="y" has_postreqs="n" is_system_patch="n"> 
+    <bug> 
+      <number>23627427</number>
+      <abstract><![CDATA[NEED SUPPORT FOR DB 12C PASSWORD VERSION IN ZTV/ZTVGH]]></abstract>
+    </bug> 
+    <name>23627427</name>
+    <type>Patch</type>
+    <status>Available</status>
+    <access id="m">Open access</access> 
+    <url> 
+      <patch_readme host="https://updates.oracle.com"><![CDATA[/Orion/Services/download?type=readme&aru=23677459]]></patch_readme> 
+      <patch_details><![CDATA[/download/23627427.html]]></patch_details>
+    </url> 
+    <request_id>23677459</request_id>
+    <product id="9480" bugdb_id="5"><![CDATA[Oracle Database Family]]></product> 
+    <release id="6000000000093020071402" name="12.1.0.2.200714" platform_patch_not_required="Y" psu="Y" cc="Y"><![CDATA[Oracle 12.1.0.2.200714]]></release> 
+    <platform id="226" bugdb_id="226"><![CDATA[Linux x86-64]]></platform> 
+    <language id="0" iso_code="EN"><![CDATA[American English]]></language> 
+    <translations_available>No</translations_available> 
+    <classification id="174">General</classification> 
+    <patch_classification id="174">General</patch_classification> 
+    <support_level id="E">Extended Support</support_level> 
+    <entitlements> 
+      <entitlement code="EXS"/> 
+    </entitlements> 
+    <patch_relationships> 
+      <related_patch> 
+        <bug> 
+          <number>31113348</number>
+          <abstract><![CDATA[DATABASE PATCH SET UPDATE 12.1.0.2.200714]]></abstract>
+        </bug> 
+        <relation_types> 
+          <relation_type>Prereq</relation_type> 
+        </relation_types> 
+        <name>31113348</name>
+        <type>Patch</type>
+        <patch_details><![CDATA[/Orion/Services/search?bug=31113348&release=600000000009300]]></patch_details>
+      </related_patch> 
+    </patch_relationships> 
+    <fixes_bugs truncated="no"> 
+      <bug> 
+        <number>23627427</number>
+        <abstract><![CDATA[NEED SUPPORT FOR DB 12C PASSWORD VERSION IN ZTV/ZTVGH]]></abstract>
+      </bug> 
+    </fixes_bugs> 
+    <size>3343656</size>
+    <files> 
+      <file> 
+        <name>p23627427_12102200714_Linux-x86-64.zip</name>
+        <size>3343656</size>
+        <download_url host="https://updates.oracle.com"><![CDATA[/Orion/Services/download/p23627427_12102200714_Linux-x86-64.zip?aru=23677459&patch_file=p23627427_12102200714_Linux-x86-64.zip]]></download_url> 
+        <digest type="SHA-1">F6A8702B3B1B384B1A6D4C8A1D14751520F64401</digest> 
+        <digest type="SHA-256">980DFE655057237AC06AA4FA8E7DC81C0DF8F2BB8FCA7C31E702BB899BEE3975</digest> 
+      </file> 
+    </files> 
+    <downloads_count>0</downloads_count>
+    <updated_date in_epoch_ms="1595340280000">2020-07-21 14:04:40</updated_date> 
+    <released_date in_epoch_ms="1595306688000">2020-07-21 04:44:48</released_date> 
+    <prereqs>
+      <prereq install_step="1">
+        <bug> 
+          <number>31113348</number>
+          <abstract><![CDATA[DATABASE PATCH SET UPDATE 12.1.0.2.200714]]></abstract>
+        </bug> 
+        <name>31113348</name>
+        <type>Patch</type>
+        <status>Available</status>
+        <access id="m">Open access</access> 
+        <request_id>23682224</request_id>
+        <product id="9480" bugdb_id="5"><![CDATA[Oracle Database]]></product> 
+        <release id="600000000009300" name="12.1.0.2.0" platform_patch_not_required="Y"><![CDATA[Oracle 12.1.0.2.0]]></release> 
+        <platform id="226" bugdb_id="226"><![CDATA[Linux x86-64]]></platform> 
+        <language id="0" iso_code="EN"><![CDATA[American English]]></language> 
+        <entitlements> 
+          <entitlement code="EXS"/> 
+        </entitlements> 
+        <files> 
+          <file> 
+            <name>p31113348_121020_Linux-x86-64.zip</name>
+            <size>2206794758</size>
+            <download_url host="https://updates.oracle.com"><![CDATA[/Orion/Services/download/p31113348_121020_Linux-x86-64.zip?aru=23682224&patch_file=p31113348_121020_Linux-x86-64.zip]]></download_url> 
+            <digest type="SHA-256">99AC0E26273407FD14683C4DD89BF5E8F4104EF3985548C62F525FB4F2DBC162</digest> 
+            <digest type="SHA-1">3516260F6C33C749C3DABD4163430D8567C7EFEB</digest> 
+          </file> 
+        </files> 
+      </prereq> 
+    </prereqs>
+  </patch> 
+</results>

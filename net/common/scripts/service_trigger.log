@@ -1,0 +1,119 @@
+SQL> 
+SQL> COL service_rw NOPRINT NEW_VALUE service_rw
+SQL> COL service_ro NOPRINT NEW_VALUE service_ro
+SQL> 
+SQL> SELECT rtrim(sys_context('userenv','con_name') ||'_RW.'|| a.value,'.') service_rw
+  2  FROM v$parameter a
+  3  WHERE a.name = 'db_domain'
+  4  ;
+
+                                                                                
+                                                                                
+
+1 row selected.
+
+SQL> 
+SQL> SELECT rtrim(sys_context('userenv','con_name') ||'_RO.'|| a.value,'.') service_ro
+  2  FROM v$parameter a
+  3  WHERE a.name = 'db_domain'
+  4  ;
+
+                                                                                
+                                                                                
+
+1 row selected.
+
+SQL> 
+SQL> PROMPT service_rw is &service_rw
+service_rw is PDB2_RW
+SQL> PROMPT service_ro is &service_ro
+service_ro is PDB2_RO
+SQL> PROMPT
+
+SQL> 
+SQL> SET FEED ON
+SQL> SET ECHO ON
+SQL> 
+SQL> exec DBMS_SERVICE.CREATE_SERVICE ( -
+>   service_name => '&service_rw', -
+>   network_name => '&service_rw', -
+>   failover_method => 'BASIC', -
+>   failover_type => 'SELECT', -
+>   failover_retries => 3600, -
+>   failover_delay => 1);
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> exec DBMS_SERVICE.CREATE_SERVICE ( -
+>   service_name => '&service_ro', -
+>   network_name => '&service_ro', -
+>   failover_method => 'BASIC', -
+>   failover_type => 'SELECT', -
+>   failover_retries => 3600, -
+>   failover_delay => 1);
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> DECLARE
+  2    pdb_name      VARCHAR(9);
+  3    db_domain     VARCHAR(128);
+  4    database_role VARCHAR(30);
+  5  BEGIN
+  6    SELECT sys_context('userenv','con_name')
+  7  	 INTO pdb_name
+  8  	 FROM dual;
+  9  
+ 10    SELECT value
+ 11  	 INTO db_domain
+ 12  	 FROM v$parameter
+ 13  	   WHERE name = 'db_domain';
+ 14  
+ 15    SELECT database_role
+ 16  	 INTO database_role
+ 17  	 FROM v$database;
+ 18  
+ 19    IF database_role = 'PRIMARY' THEN
+ 20  	 dbms_service.start_service(rtrim(pdb_name||'_RW.'||db_domain,'.'));
+ 21    ELSE
+ 22  	 dbms_service.start_service(rtrim(pdb_name||'_RO.'||db_domain,'.'));
+ 23    END IF;
+ 24  END;
+ 25  /
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER service_trigger
+  2    after startup on database
+  3  DECLARE
+  4    pdb_name       VARCHAR(9);
+  5    db_domain     VARCHAR(128);
+  6    database_role VARCHAR(30);
+  7  BEGIN
+  8    SELECT sys_context('userenv','con_name')
+  9  	 INTO pdb_name
+ 10  	 FROM dual;
+ 11  
+ 12    SELECT value
+ 13  	 INTO db_domain
+ 14  	 FROM v$parameter
+ 15  	   WHERE name = 'db_domain';
+ 16  
+ 17    SELECT database_role
+ 18  	 INTO database_role
+ 19  	 FROM v$database;
+ 20  
+ 21    IF database_role = 'PRIMARY' THEN
+ 22  	 dbms_service.start_service(rtrim(pdb_name||'_RW.'||db_domain,'.'));
+ 23    ELSE
+ 24  	 dbms_service.start_service(rtrim(pdb_name||'_RO.'||db_domain,'.'));
+ 25    END IF;
+ 26  END;
+ 27  /
+
+Trigger created.
+
+SQL> 
+SQL> SPOOL OFF
